@@ -1,4 +1,4 @@
-package spring.check.plan.feedback;
+package spring.check.feedback;
 
 import lombok.Getter;
 import lombok.Setter;

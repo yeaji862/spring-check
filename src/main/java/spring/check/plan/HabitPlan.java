@@ -11,5 +11,5 @@ public class HabitPlan {
     private int userNum;
     private boolean status;
     private String createDate;
-    private String detail_content;
+    private String content;
 }

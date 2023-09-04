@@ -8,6 +8,8 @@ import spring.check.user.Members;
 
 @Mapper
 public interface UserMapper {
+
+
     @Insert("INSERT INTO members (userId, userPass, userImg, createDate) " +
             "VALUES (#{userId}, #{userPass}, #{userImg}, now())")
     int signIn(Members members);
@@ -17,9 +19,6 @@ public interface UserMapper {
 
     @Update("UPDATE members SET userImg = #{userImg} WHERE userNum = #{userNum}")
     int editImg(Members members);
-
-    @Update("UPDATE members SET userPass = #{userPass} WHERE userNum = #{userNum}")
-    int editPass(Members members);
 
     @Select("SELECT userNum FROM members WHERE userId = #{userId}")
     String findId(String userId);

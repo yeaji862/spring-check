@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/user")
 public class UserController {
 
-    private UserServiceImpl userService;
+    private  final UserServiceImpl userService;
 
     @PostMapping
     public String userSignUp(@ModelAttribute Members members){
@@ -36,11 +36,6 @@ public class UserController {
         return (userService.editImg(members) == 1) ? "성공" : "실패";
     }
 
-    @PostMapping("/{userId}")
-    public String userEditPass(@ModelAttribute Members members){
-        return (userService.editPass(members) == 1) ? "성공" : "실패";
-    }
-
     @ResponseBody
     public String findId(@RequestParam String userId){
         return (userService.findId(userId) != null) ? "true" : "false";
@@ -49,7 +44,7 @@ public class UserController {
     @GetMapping("/logout")
     public String userLogout(HttpSession session){
         session.getClass();
-        return "";
+        return "/";
     }
 
 }
