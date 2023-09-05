@@ -28,7 +28,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.mariadb.jdbc:mariadb-java-client'
+	implementation 'org.postgresql:postgresql'
 	testImplementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter-test', version: '3.0.0'
 	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '3.0.0'
 }
