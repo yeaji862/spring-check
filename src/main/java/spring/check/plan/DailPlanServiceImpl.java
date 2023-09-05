@@ -17,7 +17,11 @@ public class DailPlanServiceImpl implements DailPlanService {
     @Override
     public int upload(DailPlan dailPlan) {
         log.info("DailPlanServiceImpl upload");
-        return mapper.upload(dailPlan);
+
+        int seq = mapper.upload(dailPlan);
+        dailPlan.setSeq(seq);
+
+        return mapper.detailUpload(dailPlan);
     }
 
     @Override

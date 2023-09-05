@@ -12,5 +12,5 @@ public class DailPlan {
     private int priority;
     private boolean status;
     private String createDate;
-    private String content;
+    private String detail_content;
 }

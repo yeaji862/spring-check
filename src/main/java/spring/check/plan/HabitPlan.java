@@ -9,7 +9,9 @@ public class HabitPlan {
 
     private int seq;
     private int userNum;
-    private boolean status;
     private String createDate;
-    private String content;
+    private int habit_month;
+    private int habit_year;
+    private boolean[] habit_date_array;
+    private String detail_content;
 }

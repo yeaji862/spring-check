@@ -10,8 +10,7 @@ import spring.check.user.Members;
 public interface UserMapper {
 
 
-    @Insert("INSERT INTO members (userId, userPass, userImg, createDate) " +
-            "VALUES (#{userId}, #{userPass}, #{userImg}, now())")
+    @Insert("INSERT INTO members VALUES (DEFAULT, #{userId}, #{userPass}, #{userImg}, now())")
     int signIn(Members members);
 
     @Select("SELECT * FROM members WHERE userId = #{userId} AND userPass =#{userPass}")

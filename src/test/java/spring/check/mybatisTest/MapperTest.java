@@ -6,8 +6,6 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface MapperTest {
 
-    @Select("SELECT  COUNT(*)\n" +
-            "        FROM   information_schema.tables\n" +
-            "        WHERE  table_schema = 'check'")
+    @Select("SELECT count(*) FROM information_schema.tables WHERE table_schema = 'public'")
     int dataTest();
 }
