@@ -25,12 +25,12 @@ public interface DailPlanMapper {
             "FROM dailPlan dp\n" +
             "INNER JOIN detail d ON dp.userNum = d.userNum\n" +
             "WHERE dp.userNum = #{userNum} AND dp.createDate = #{date}")
-    List<DailPlan> planList(String date, int userNum);
+    List<DailPlan> planListByDate(String date, int userNum);
 
     @Select("SELECT dp.*, d.content\n" +
             "FROM dailPlan dp\n" +
             "INNER JOIN detail d ON dp.userNum = d.userNum WHERE dp.userNum = #{userNum} ORDER BY dp.createDate")
-    List<DailPlan> planListByDate(int userNum);
+    List<DailPlan> planList(int userNum);
 
     @Update("UPDATE dailPlan SET status = #{status} WHERE seq = #{seq} AND userNum = #{userNum}")
     int editComplete(int seq, int userNum , boolean status);

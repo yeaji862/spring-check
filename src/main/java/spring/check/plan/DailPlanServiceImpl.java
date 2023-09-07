@@ -37,15 +37,15 @@ public class DailPlanServiceImpl implements DailPlanService {
     }
 
     @Override
-    public List<DailPlan> planList(String date, int userNum) {
-        log.info("DailPlanServiceImpl planList");
-        return mapper.planList(date, userNum);
+    public List<DailPlan> planListByDate(String date, int userNum) {
+        log.info("DailPlanServiceImpl planListByDate");
+        return mapper.planListByDate(date, userNum);
     }
 
     @Override
-    public List<DailPlan> planListByDate(int userNum) {
-        log.info("DailPlanServiceImpl planListByDate");
-        return mapper.planListByDate(userNum);
+    public List<DailPlan> planList(int userNum) {
+        log.info("DailPlanServiceImpl planList");
+        return mapper.planList(userNum);
     }
 
     @Override

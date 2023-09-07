@@ -19,10 +19,10 @@ public class DailPlanController {
 
     @GetMapping
     List<DailPlan> planList(@RequestParam String date, @RequestParam int userNum){
-        return dailPlanService.planList(date, userNum);
+        return dailPlanService.planListByDate(date, userNum);
     }
     @GetMapping("/date")
     List<DailPlan> planListByDate(@RequestParam int userNum){
-        return dailPlanService.planListByDate(userNum);
+        return dailPlanService.planList(userNum);
     }
 }

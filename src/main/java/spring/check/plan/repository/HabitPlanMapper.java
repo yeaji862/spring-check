@@ -15,7 +15,7 @@ public interface HabitPlanMapper {
     int contentEdit(HabitPlan habitPlan);
 
     @Update("update habitPlan set habit_date_array[#{day}] = #{status} where seq = #{seq} and userNum = #{userNum}")
-    int statusEdit(HabitPlan habitPlan, boolean status, int day);
+    int statusEdit(int userNum, boolean status, int day);
 
     @Delete("DELETE FROM detail WHERE seq = #{seq} AND userNum = #{userNum}") // habitPlan 테이블에 같은 seq userNum 테이터 줄 삭제 트리거 생성
     int deletePlan(int seq, int userNum);
@@ -24,11 +24,11 @@ public interface HabitPlanMapper {
             "FROM habitPlan hp\n" +
             "INNER JOIN detail d ON hp.userNum = d.userNum\n" +
             "WHERE hp.userNum = #{userNum} AND hp.habit_year = #{habit_year} AND hp.habit_month = #{habit_month}")
-    List<HabitPlan> planList(String date, int userNum);
+    List<HabitPlan> planListByDate(String date, int userNum);
 
     @Select("SELECT hp.*, d.content\n" +
             "FROM habitPlan hp\n" +
             "INNER JOIN detail d ON hp.userNum = d.userNum WHERE hp.userNum = #{userNum} ORDER BY hp.createDate")
-    List<HabitPlan> planListByDate(int userNum);
+    List<HabitPlan> planList(int userNum);
 
 }
