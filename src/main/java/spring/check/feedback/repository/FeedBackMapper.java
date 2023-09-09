@@ -11,10 +11,10 @@ public interface FeedBackMapper {
 
     @Update("update feedBack set feedback_content = #{feedback_content} and modificationDate = now()\n" +
             "where seq = #{seq} and userNum = #{userNum}")
-    int edit();
+    int edit(FeedBack feedBack);
 
     @Delete("delete from feedBack where seq = #{seq} and userNum = #{userNum}")
-    int deleteFeedBack();
+    int deleteFeedBack(int seq, int userNum);
 
     @Select("select * from \"feedBack\" fb  where \n" +
             "seq = (select seq from \"habitPlan\" hp where habit_year = #{year} and habit_month = #{month}) and userNum = #{userNum}")
