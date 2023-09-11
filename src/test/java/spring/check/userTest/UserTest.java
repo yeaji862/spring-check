@@ -21,7 +21,7 @@ public class UserTest {
         members1.setUserPass("1111");
         members1.setUserImg("testImg");
 
-        int num = service.signIn(members1);
+        int num = service.signUp(members1);
 
         Assertions.assertThat(num).isEqualTo(1);
     }

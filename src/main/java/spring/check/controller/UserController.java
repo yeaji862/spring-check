@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import spring.check.user.Members;
 import spring.check.user.UserServiceImpl;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Slf4j
 @Controller
@@ -16,18 +18,19 @@ public class UserController {
 
     private  final UserServiceImpl userService;
 
-    @PostMapping
+    @PostMapping("/signUp")
     public String userSignUp(@ModelAttribute Members members){
-        return (userService.signUp(members) != null) ? "성공" : "실패";
+        return (userService.signUp(members) != 0) ? "" : "실패";
     }
 
-    @PostMapping("/signIn")
+    @PostMapping
     public String userSignIn(@ModelAttribute Members members , HttpSession session) {
+        log.info("UserControllerUserSignIn");
         // 해당 로직을 서비스에 구현 할 지 컨트롤러에서 구현 할 지 미정
-        if(userService.signIn(members) == 1){
+        if(userService.signIn(members) != null){
             // 회원 정보 어떤식으로 저장 할 지 선택
             session.setAttribute("userNum" , members.getUserNum());
-            return "";
+            return "check/main/main";
         }else return "실패";
     }
     

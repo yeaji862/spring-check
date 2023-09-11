@@ -19,13 +19,13 @@ public class UserServiceImpl implements UserService {
         로직 분리
  **/
     @Override
-    public int signIn(Members members) {
+    public Members signIn(Members members) {
         log.info("UserServiceImpl signIn()");
         return mapper.signIn(members);
     }
 
     @Override
-    public Members signUp(Members members) {
+    public int signUp(Members members) {
         log.info("UserServiceImpl signUp()");
         return mapper.signUp(members);
     }

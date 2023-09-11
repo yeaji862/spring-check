@@ -10,11 +10,11 @@ import spring.check.user.Members;
 public interface UserMapper {
 
 
-    @Insert("INSERT INTO members VALUES (DEFAULT, #{userId}, #{userPass}, #{userImg}, now())")
-    int signIn(Members members);
+    @Insert("INSERT INTO members VALUES (DEFAULT, #{userId}, #{userPass}, DEFAULT, DEFAULT, #{userBirth})")
+    int signUp(Members members);
 
     @Select("SELECT * FROM members WHERE userId = #{userId} AND userPass =#{userPass}")
-    Members signUp(Members members);
+    Members signIn(Members members);
 
     @Update("UPDATE members SET userImg = #{userImg} WHERE userNum = #{userNum}")
     int editImg(Members members);

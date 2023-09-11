@@ -5,7 +5,19 @@
 </head>
 <body>
 
-<h1>시작</h1>
-
+<form action="user" method="post">
+    <input name="userId">
+    <input name="userPass">
+    <input type="submit" value="로그인">
+</form>
+<a>회원가입</a>
+<form action="user/signUp" method="post">
+    <input name="userId" value="id">
+    <input name="userPass" value="pass">
+    <input name="userBirth" value="나이" type="date">
+    <input type="submit" value="로그인">
+</form>
+<br>
+<a>구글로그인</a>
 </body>
 </html>
