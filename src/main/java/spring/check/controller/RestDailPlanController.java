@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import spring.check.plan.DailPlan;
-import spring.check.plan.DailPlanServiceImpl;
-
-import java.util.List;
+import spring.check.plan.service.DailPlanServiceImpl;
 
 @Slf4j
 @RestController

@@ -13,12 +13,15 @@ public interface UserMapper {
     @Insert("INSERT INTO members VALUES (DEFAULT, #{userId}, #{userPass}, DEFAULT, DEFAULT, #{userBirth})")
     int signUp(Members members);
 
-    @Select("SELECT * FROM members WHERE userId = #{userId} AND userPass =#{userPass}")
+    @Select("SELECT * FROM members WHERE \"userId\" = #{userId}")
     Members signIn(Members members);
 
-    @Update("UPDATE members SET userImg = #{userImg} WHERE userNum = #{userNum}")
+    @Update("UPDATE members SET \"userImg\" = #{userImg} WHERE \"userNum\" = #{userNum}")
     int editImg(Members members);
 
-    @Select("SELECT userNum FROM members WHERE userId = #{userId}")
+    @Update("UPDATE members SET \"userPass\" = #{userPass} WHERE \"userNum\" = #{userNum}")
+    int editPass(Members members);
+
+    @Select("SELECT \"userNum\" FROM members WHERE \"userId\" = #{userId}")
     String findId(String userId);
 }

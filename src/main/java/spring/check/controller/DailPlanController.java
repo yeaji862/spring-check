@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import spring.check.plan.DailPlan;
-import spring.check.plan.DailPlanServiceImpl;
+import spring.check.plan.service.DailPlanServiceImpl;
 
 import java.util.List;
 

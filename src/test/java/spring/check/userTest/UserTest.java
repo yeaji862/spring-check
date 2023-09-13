@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import spring.check.user.Members;
-import spring.check.user.UserServiceImpl;
+import spring.check.user.service.UserServiceImpl;
 
 @SpringBootTest
 public class UserTest {

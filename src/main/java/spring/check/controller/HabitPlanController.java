@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.check.plan.HabitPlan;
-import spring.check.plan.HabitPlanServiceImpl;
+import spring.check.plan.service.HabitPlanServiceImpl;
 
 import java.util.List;
 

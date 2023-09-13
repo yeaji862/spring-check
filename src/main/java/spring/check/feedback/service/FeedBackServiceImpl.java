@@ -1,8 +1,9 @@
-package spring.check.feedback;
+package spring.check.feedback.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import spring.check.feedback.FeedBack;
 import spring.check.feedback.repository.FeedBackMapper;
 import spring.check.feedback.service.FeedBackService;
 

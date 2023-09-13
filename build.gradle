@@ -31,6 +31,8 @@ dependencies {
 	implementation 'org.postgresql:postgresql'
 	testImplementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter-test', version: '3.0.0'
 	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '3.0.0'
+	implementation 'org.springframework.boot:spring-boot-starter-security:2.7.15'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {

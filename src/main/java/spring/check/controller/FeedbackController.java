@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import spring.check.feedback.FeedBack;
-import spring.check.feedback.FeedBackServiceImpl;
+import spring.check.feedback.service.FeedBackServiceImpl;
 
 @Slf4j
 @RestController

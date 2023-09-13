@@ -1,8 +1,9 @@
-package spring.check.plan;
+package spring.check.plan.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import spring.check.plan.HabitPlan;
 import spring.check.plan.repository.HabitPlanMapper;
 import spring.check.plan.service.HabitPlanService;
 
