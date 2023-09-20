@@ -24,17 +24,18 @@ public class UserController {
     @PostMapping
     public String userSignIn(@ModelAttribute Members members , HttpSession session){
         log.info("UserControllerUserSignIn");
-        Members user = userService.signIn(members);
+        Members signInMember = userService.signIn(members);
 
-        if(user != null){
-            session.setAttribute("user" , user);
+        if(signInMember != null){
+            session.setAttribute("userMail" , signInMember.getUserMail());
+            session.setAttribute("userNum" , signInMember.getUserNum());
             return "check/main"; // ??
         }else {
             return "redirect:?status=false";
         }
     }
 
-    @GetMapping
+    @GetMapping("/findPass")
     public String findPass(){
         return "findPass";
     }
@@ -46,6 +47,8 @@ public class UserController {
 
     @GetMapping("/logout")
     public String userLogout(HttpSession session){
+        session.removeAttribute("userMail");
+        session.removeAttribute("userNum");
         return "/";
     }
     

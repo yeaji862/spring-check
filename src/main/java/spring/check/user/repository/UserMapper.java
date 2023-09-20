@@ -10,10 +10,10 @@ import spring.check.user.Members;
 public interface UserMapper {
 
 
-    @Insert("INSERT INTO members VALUES (DEFAULT, #{userId}, #{userPass}, DEFAULT, DEFAULT, #{userBirth})")
+    @Insert("INSERT INTO members VALUES (DEFAULT, #{userPass},'basic', NOW(), #{userMail}, 'default') RETURNING \"userNum\"")
     int signUp(Members members);
 
-    @Select("SELECT * FROM members WHERE \"userId\" = #{userId}")
+    @Select("SELECT * FROM members WHERE \"userMail\" = #{userMail}")
     Members signIn(Members members);
 
     @Update("UPDATE members SET \"userImg\" = #{userImg} WHERE \"userNum\" = #{userNum}")
@@ -22,6 +22,6 @@ public interface UserMapper {
     @Update("UPDATE members SET \"userPass\" = #{userPass} WHERE \"userNum\" = #{userNum}")
     int editPass(Members members);
 
-    @Select("SELECT \"userNum\" FROM members WHERE \"userId\" = #{userId}")
-    String findId(String userId);
+    @Select("SELECT \"userNum\" FROM members WHERE \"userMail\" = #{userMail}")
+    String findId(String userMail);
 }

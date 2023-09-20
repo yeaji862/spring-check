@@ -11,10 +11,12 @@ import java.util.Date;
 public class Members {
 
     private int userNum;
-    private String userId;
+    private String userId; // delete
+    private String userMail;
     private String userPass;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date userBirth;
+    private Date userBirth; // delete
     private String userImg;
     private Date createDate;
+    private String division;
 }

@@ -18,10 +18,10 @@ public class EditPassLinkController {
     private final EditPassLinkServiceImpl emailService;
     @GetMapping
     @ResponseBody
-    public String sendEmail(@RequestParam String userId, @RequestParam int userNum){
+    public String sendEmail(@RequestParam String userMail, @RequestParam int userNum){
         CreateRandomId createRandomId = new CreateRandomId();
         String randomId = createRandomId.createRandomId();
-        emailService.email_sand_info(randomId, userId, userNum);
+        emailService.email_sand_info(randomId, userMail, userNum);
         return "ok";
     }
 

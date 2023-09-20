@@ -11,7 +11,7 @@ public class EditPasswordLinkInfo {
 
     private String random_id;
     private int userNum;
-    private String userEmail;
+    private String userMail;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date sand_date;
     private int pass_change;

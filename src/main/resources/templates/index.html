@@ -6,19 +6,20 @@
 <body>
 
 <form action="user" method="post">
-    <input name="userId">
+    <input name="userMail">
     <input name="userPass">
     <input type="submit" value="로그인">
 </form>
 <a>회원가입</a>
 <form action="user/signUp" method="post">
-    <input name="userId" value="id">
+    <input name="userMail" value="id">
     <input name="userPass" value="pass">
-    <input name="userBirth" value="나이" type="date">
     <input type="submit" value="로그인">
 </form>
 <br>
-<a>구글로그인</a>
+<a href="/oauth2/login?value=google">구글로그인</a>
+<a href="/oauth2/login?value=kakao">카카오로그인</a>
+<a href="/oauth2/login?value=naver">네이버로그인</a>
 <a href="/user/findPass">비밀번호 찾기</a>
 </body>
 </html>
