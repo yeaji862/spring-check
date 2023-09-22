@@ -1,0 +1,96 @@
+         .horizontal-line {
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .horizontal-line::before,
+        .horizontal-line::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .or-text {
+            flex: 0 0 auto;
+            padding: 0 10px;
+            color: #888;
+        }
+
+        .container {
+            margin-top: 10%;
+        }
+
+
+        @media (max-width: 768px) {
+            .login-image {
+                display: none;
+            }
+            .main_text_div{
+                margin-bottom: 15%;
+                margin-top: 10%;
+                text-align: center;
+            }
+        }
+        .mainImg{
+            width: 85%;
+            margin-top: 10%;
+        }
+        .login_input{
+            width: 100%;
+            height: 43px;
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid #d3cdcd;
+            margin-top: 3%;
+        }
+        .login_button{
+            height: 35px;
+            width: 30%;
+            background-color: #3395e6;
+            color: white;
+            border: 0;
+            border-radius: 20px;
+        }
+        .login_button:hover{
+            background-color: #1585e0;
+        }
+        .signUpDiv{
+            text-align: end;
+            color: #007bff;
+            cursor: pointer;
+        }
+        .oauth_button{
+            height: 43px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3%;
+            cursor: pointer;
+        }
+        .oauth_logo_img{
+            width: 40px;
+            margin-left: 3%;
+        }
+        .google_logo_img{
+            width: 32px;
+        }
+        .oauth_text {
+            flex: 1;
+            text-align: center;
+            margin-right: 10%;
+            font-weight: 700;
+        }
+        .naver_but{
+            background: #03C75A;
+            color: white;
+        }
+        .kakao_but{
+            background: #FEE500;
+            color: white;
+        }
+        .google_but{
+            border: 1px solid #e8e8e8;
+            color: #4b4b4f;
+        }

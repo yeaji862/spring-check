@@ -1,13 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sub.css}">
 </head>
 <body>
-    <form>
-        <input name="userMail" value="이메일 입력">
-    </form>
-<button>비밀번호 변경</button>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card_div">
+                <div class="main_text_div">
+                    <h1 class="main_text">Check</h1>
+                    <h3 class="sub_text">더 나은 미래를 위한 첫걸음,</h3>
+                </div>
+                <div class="login_form">
+                    <!-- <p class="error">등록된 이메일이 없습니다! 다시 입력해주세요.</p>
+                    <p>비밀번호 변경 링크를 메일로 보냈습니다!</p> -->
+                    <form>
+                        <input type="text" name="userMail" class="sub_input" placeholder="Email" style="margin-top:0"><br>
+                        <button type="submit" class="sub_button findPass_button">비밀번호 찾기</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

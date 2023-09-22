@@ -1,0 +1,15 @@
+.main_text{
+            font-weight: 800;
+            color: #203fda;
+            font-size: 50px;
+        }
+.sub_text{
+            font-weight: 300;
+        }
+.login_form{
+            margin-top:10%;
+            text-align: center;
+        }
+.error{
+            color: red;
+        }

@@ -1,0 +1,51 @@
+        .container {
+            margin-top: 7%;
+        }
+
+        .main_text_div{
+            margin-bottom: 10%;
+            margin-top: 10%;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .col-md-3 {
+                display: none;
+            }
+        }
+
+        .sub_input{
+            width: 80%;
+            height: 43px;
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid #d3cdcd;
+            margin-bottom: 5%;
+        }
+        .sub_button{
+            height: 35px;
+            width: 30%;
+            background-color: #3395e6;
+            color: white;
+            border: 0;
+            border-radius: 20px;
+            margin-top: 2%;
+        }
+        .sub_button:hover{
+            background-color: #1585e0;
+        }
+        .card_div{
+            background: #fdfdfd;
+            height: 550px;
+            width: 100%;
+            border-radius: 40px;
+            padding-top: 5%;
+            border: 1px solid #dbdbdb;
+            box-shadow: 1px 1px 2px 2px rgb(236, 234, 234);
+        }
+
+        .signUp_p{
+            text-align: initial;
+            margin-left: 10%;
+            font-size: 20px;
+        }
