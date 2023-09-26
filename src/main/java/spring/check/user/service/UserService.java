@@ -8,5 +8,5 @@ public interface UserService {
     int signUp(Members members);
     int editImg(Members members);
     int editPass(Members members);
-    String findId(String userId);
+    int findId(String userId);
 }

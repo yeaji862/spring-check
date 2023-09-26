@@ -16,13 +16,12 @@ import spring.check.editPassLink.service.EditPassLinkServiceImpl;
 public class EditPassLinkController {
 
     private final EditPassLinkServiceImpl emailService;
-    @GetMapping
+    @PostMapping
     @ResponseBody
-    public String sendEmail(@RequestParam String userMail, @RequestParam int userNum){
+    public String sendEmail(@RequestParam String userMail){ // 전에 보낸 링크 데이터는 자동 삭제
         CreateRandomId createRandomId = new CreateRandomId();
         String randomId = createRandomId.createRandomId();
-        emailService.email_sand_info(randomId, userMail, userNum);
-        return "ok";
+        return emailService.email_sand_info(randomId, userMail);
     }
 
     @GetMapping("/{random_id}")
@@ -30,7 +29,9 @@ public class EditPassLinkController {
         EditPasswordLinkInfo id = emailService.checkExpirationDate(random_id, userNum);
         if(id != null){
             model.addAttribute("userNum", id.getUserNum());
-            return "OK";
-        }else return "NO";
+            return "editPass";
+        }else {
+            return "redirect:http://localhost:8080/?status=link";
+        }
     }
 }

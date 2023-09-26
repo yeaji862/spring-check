@@ -41,7 +41,9 @@ public class OauthConfig {
             case "google" :
                 userMail =  requestHeadersSpec.retrieve().bodyToFlux(GoogleUserInfoResponse.class).blockFirst().getEmail(); break;
             case "kakao" :
-                userMail =  requestHeadersSpec.retrieve().bodyToFlux(KakaoUserInfoResponse.class).blockFirst().getKakao_account().getEmail(); break;
+                KakaoUserInfoResponse kakaoUserInfoResponse = requestHeadersSpec.retrieve().bodyToFlux(KakaoUserInfoResponse.class).blockFirst();
+                userMail =  (kakaoUserInfoResponse.getKakao_account().getEmail() != null) ?
+                kakaoUserInfoResponse.getKakao_account().getEmail() : String.valueOf(kakaoUserInfoResponse.getId()); break;
             case "naver" :
                 userMail =  requestHeadersSpec.retrieve().bodyToFlux(NaverUserInfoResponse.class).blockFirst().getResponse().getEmail(); break;
         }

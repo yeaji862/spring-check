@@ -37,7 +37,7 @@ public class OauthController {
             if(members != null){
                 session.setAttribute("userNum" , members.getUserNum());
                 session.setAttribute("userMail" , members.getUserMail());
-                return "/";
+                return "/check/main";
             }
 
         }

@@ -21,14 +21,14 @@
                 </div>
                 <div class="login_form">
                     <p class="signUp_p">회원가입</p>
-                    <form>
-                        <!-- <small class="error">존재하는 이메일 입니다.</small> -->
-                        <!-- <small class="error">이메일 형식에 맞춰 다시 입력해주세요. ex) email01@check.com</small> -->
-                        <input type="text" name="username" class="sub_input" placeholder="Email"><br>
-                        <!-- <small class="error">비밀번호를 다시 입력해주세요.</small> -->
-                        <input type="text" class="sub_input signUp_input" placeholder="PassWord"><br>
-                        <!-- <small class="error">비밀번호가 일치하지 않습니다! 다시 입력해주세요.</small> -->
-                        <input type="text" name="userPass" class="sub_input signUp_input" placeholder="비밀번호 확인">
+                    <form action="/user/signUp" method="post" onsubmit="signUpSubmit()">
+                         <small class="duplicateError error" style="display:none">존재하는 이메일 입니다.</small>
+                         <small class="mailError error" style="display:none">이메일 형식에 맞춰 다시 입력해주세요. ex) email01@check.com</small>
+                        <input type="text" name="userMail" class="sub_input email" placeholder="Email" id="email"><br>
+                         <small class="passError error" style="display:none">비밀번호는 숫자와 알파벳(대소문자 무관)을 모두 포함하며, 총 길이는 8자 이상이어야 합니다.</small>
+                        <input type="password" class="sub_input signUp_input" placeholder="PassWord" id="passWord"><br>
+                         <small class="matchError error" style="display:none">비밀번호가 일치하지 않습니다! 다시 입력해주세요.</small>
+                        <input type="password" name="userPass" class="sub_input signUp_input" placeholder="비밀번호 확인" id="checkPassWord">
                         <button type="submit" class="sub_button findPass_button">Sign up</button>
                     </form>
                 </div>
@@ -38,7 +38,17 @@
     <div class="col-md-3"></div>
 </div>
 </div>
-
+<script>
+       window.onpageshow = function(event) {
+        if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+            location.href="/user";
+            }
+        }
+</script>
+<script type="text/javascript" src="/js/format_email.js" ></script>
+<script type="text/javascript" src="/js/format_pass.js" ></script>
+<script type="text/javascript" src="/js/ajax.js" ></script>
+<script type="text/javascript" src="/js/submit.js" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

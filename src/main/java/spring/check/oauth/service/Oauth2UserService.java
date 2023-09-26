@@ -22,6 +22,7 @@ public class Oauth2UserService{
 
     public Members oauth2User(WebClient.RequestHeadersSpec<?> requestHeadersSpec, String division) {
         String userMail = oauthConfig.userMailFind(requestHeadersSpec, division);
+        System.out.println(userMail + "!!!!!!!!!!!");
         Members members = mapper.findId(userMail, division);
 
         if(members == null){

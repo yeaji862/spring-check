@@ -13,7 +13,7 @@ public interface OauthMapper {
     Members findId(@Param("email")String email, @Param("division")String division);
 
     @Insert("insert into members values\n" +
-            "(DEFAULT, #{userPass}, 'basic', NOW(), #{userMail}, #{division}) RETURNING \"userNum\"")
+            "(DEFAULT, #{userPass}, 'basic', NOW(), #{userMail}, #{division})")
     int signIn(Members members);
 
 }

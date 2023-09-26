@@ -3,6 +3,7 @@ package spring.check.user.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import spring.check.editPassLink.repository.EditPassLinkMapper;
 import spring.check.user.Members;
 import spring.check.user.UserPassEncoder;
 import spring.check.user.repository.UserMapper;
@@ -13,22 +14,17 @@ import spring.check.user.repository.UserMapper;
 public class UserServiceImpl implements UserService {
 
     private  final UserMapper mapper;
+    private final EditPassLinkMapper editPassLinkMapper;
     private final UserPassEncoder passEncoder;
 
     @Override
     public Members signIn(Members members) {
         log.info("UserServiceImpl signIn()");
-
         String userPass = members.getUserPass();
         Members user = mapper.signIn(members);
-
         if(user != null){
             String encodePassword = user.getUserPass();
-
-            if(passEncoder.passwordMatches(userPass,encodePassword)){
-                return user;
-            }else return null;
-
+            return (passEncoder.passwordMatches(userPass,encodePassword)) ? user : null;
         }else return null;
 
     }
@@ -36,8 +32,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int signUp(Members members) {
         log.info("UserServiceImpl signUp()");
+        String userPass = members.getUserPass();
         members.setUserPass(passEncoder.passwordEncoder(members.getUserPass()));
-        return mapper.signUp(members);
+        int num = mapper.signUp(members);
+        members.setUserPass(userPass);
+        return num;
     }
 
     @Override
@@ -50,12 +49,15 @@ public class UserServiceImpl implements UserService {
     public int editPass(Members members) {
         log.info("UserServiceImpl editPass()");
         members.setUserPass(passEncoder.passwordEncoder(members.getUserPass()));
-        return mapper.editPass(members);
+        int returnNum = mapper.editPass(members);
+        if(returnNum == 1){
+            return editPassLinkMapper.editPass_change(members.getUserNum()); // 비밀번호 변경시 링크 정보 테이블에 업데이트 해준다
+        }else return 0;
     }
 
     @Override
-    public String findId(String userId) {
+    public int findId(String userMail) {
         log.info("UserServiceImpl findId()");
-        return mapper.findId(userId);
+        return mapper.findId(userMail);
     }
 }

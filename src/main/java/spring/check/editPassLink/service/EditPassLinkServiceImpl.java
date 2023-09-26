@@ -7,6 +7,7 @@ import spring.check.editPassLink.DateCalculation;
 import spring.check.editPassLink.EditPasswordLinkInfo;
 import spring.check.editPassLink.repository.EditPassLinkMapper;
 import spring.check.mail.MailServiceImpl;
+import spring.check.user.repository.UserMapper;
 
 @Service
 @RequiredArgsConstructor
@@ -15,22 +16,21 @@ public class EditPassLinkServiceImpl {
 
     private final MailServiceImpl mailService;
     private final EditPassLinkMapper mapper;
+    private final UserMapper userMapper;
 
-    public void email_sand_info(String random_id, String userId, int userNum){
+    public String email_sand_info(String random_id, String userMail) {
         log.info("EmailService email_sand_infoInsert()");
-        if(mapper.email_sand_infoInsert(random_id, userNum, userId) > 0) mailService.sendMail(userId, random_id, userNum);
+        int Num = mapper.email_sand_infoInsert(random_id, userMail);
+        if (Num > 0) {
+            return (mailService.sendMail(userMail, random_id, userMapper.getUserNum(userMail))) ? "ok" : "fail";
+        }else return "fail";
     }
 
     public EditPasswordLinkInfo checkExpirationDate(String random_id, int userNum){
         log.info("EmailService findId()");
         EditPasswordLinkInfo id = mapper.findId(random_id, userNum);
-
         if(id != null){
-
-            if(new DateCalculation().dateCalculation(id.getSand_date())){
-                return id;
-            }else return null;
-
+            return (new DateCalculation().dateCalculation(id.getSand_date())) ? id : null;
         }else return null;
 
     }
