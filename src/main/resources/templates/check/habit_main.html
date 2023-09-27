@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/check.css}">
 </head>
 <body>
 
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-1">
+            <th:block th:replace="check/fragment/side :: Side"></th:block>
+        </div>
+
+        <div class="col-md-6">
+
+            <h4 class="phrase-h4">&nbsp;<img src="img/iconmonstr-check-mark-15-240.png" class="check-img"> 한 달 습관을 계획해보세요.</h4>
+            <p class="phrase">"습관은 우리가 되고자 하는 사람을 만든다"</p>
+            <input type="text" class="habitPlan-input" placeholder="하나의 습관을 작성해주세요. Enter창을 누르면 업로드 됩니다!">
+
+            <div class="habitPlan-div">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        <p class="plan-p">보리 산책</p>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-5 productivity">
+            <th:block th:replace="check/fragment/info :: Info"></th:block>
+        </div>
+
+    </div>
+</div>
+<th:block th:replace="check/fragment/userImg-edit-modal.html :: User-img-edit"></th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+
+

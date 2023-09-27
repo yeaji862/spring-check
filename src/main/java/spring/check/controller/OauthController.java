@@ -3,6 +3,7 @@ package spring.check.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import spring.check.oauth.service.Oauth2LoginServiceImpl;
@@ -11,7 +12,7 @@ import spring.check.user.Members;
 
 import javax.servlet.http.HttpSession;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/oauth2/login")

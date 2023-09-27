@@ -1,0 +1,182 @@
+        .container{
+            margin-top: 3%;
+        }
+        .bar-img{
+            width: 45%;
+            margin-bottom: 60px;
+            cursor: pointer;
+        }
+        .col-md-1{
+            text-align: center;
+        }
+        .calendar{
+            text-align: center;
+        }
+        .mobile-drop{
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .web-drop{
+                display:none;
+            }
+            .mobile-drop{
+                display:block;
+            }
+            .col-md-1{
+            text-align:left;
+            }
+            .plan-input{
+                margin-top: 25px;
+            }
+            .span-text{
+                font-weight: 200;
+                margin-left: 28%;
+                font-size: 25px;
+            }
+            .productivity{
+                display:none;
+            }
+            .phrase-h4{
+                margin-top: 6%;
+            }
+            .history-div{
+                margin-top: 5%;
+            }
+        }
+
+        .plan-input{
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            border: none;
+            background-color: #f7f7f7;
+            padding: 10px;
+            margin-bottom: 5%;
+        }
+        .feedback-textarea{
+            width: 100%;
+            height: 120px;
+            border-radius: 5px;
+            border: none;
+            background-color: #f7f7f7;
+            padding: 10px;
+            margin-bottom: 5%;
+        }
+        .plan-p{
+            color: #323233;
+        }
+        .icon-check {
+            position: relative;
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+            margin-right: 6px;
+            cursor: pointer;
+        }
+        .icon-check img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+        .check{
+            width: 5%;
+        }
+        .info-div{
+            height: 130px;
+            overflow: scroll;
+        }
+        .h2-with-text {
+            display: flex;
+            align-items: center;
+        }
+
+        .h2-with-text .text {
+            flex-grow: 1;
+            margin-left: 4%;
+        }
+        .num-p{
+            font-weight: 300;
+            display: inline-block;
+        }
+        .arrow-img{
+            width: 8%;
+            padding-bottom: 3%;
+            cursor: pointer;
+        }
+        .dailPlan-div{
+            margin-top: 35px;
+            height: 450px;
+            overflow: scroll;
+        }
+        .dropdown-item {
+            cursor: pointer;
+        }
+        .modal-img{
+            width: 80px;
+            margin-top: 3%;
+            height: 80px;
+            border-radius: 50px;
+            margin-bottom: 3%;
+        }
+        .edit-p{
+            text-decoration: underline;
+            color: #5e5e5e;
+            cursor: pointer;
+        }
+        .edit-p:hover{
+            color: #262626;
+            font-weight: 500;
+        }
+        .barProfile-img{
+            margin-bottom: 60px;
+            cursor: pointer;
+            width:60px;
+            height:60px;
+            border-radius: 50px;
+            margin-top: 10%;
+        }
+        .phrase{
+            font-weight: 100;
+            font-size: 15px;
+        }
+        .check-img{
+            width: 4%;
+            padding-bottom: 1%;
+        }
+        .habitPlan-div{
+            height: 450px;
+            overflow: scroll;
+        }
+        .habitPlan-input{
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            border: none;
+            background-color: #f7f7f7;
+            padding: 10px;
+            margin-bottom: 5%;
+            margin-top: 0;
+        }
+        .phrase-h4{
+            font-weight: 400;
+        }
+        .time-small{
+            color: #8e8e8f;
+        }
+        .history-div{
+            height: 450px;
+            overflow: scroll;
+            margin-top: 8%;
+        }
+        .history-h4{
+            font-weight: 400;
+        }
+        .refresh-img{
+            width: 4%;
+            cursor: pointer;
+            margin-right: 2%;
+            padding-bottom: 1%;
+        }
