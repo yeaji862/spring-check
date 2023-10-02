@@ -3,9 +3,8 @@ package spring.check.plan.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import spring.check.plan.DailPlan;
-import spring.check.plan.repository.DailPlanMapper;
-import spring.check.plan.service.DailPlanService;
+import spring.check.plan.DailSchedule;
+import spring.check.plan.repository.DailScheduleMapper;
 
 import java.util.List;
 
@@ -14,9 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DailPlanServiceImpl implements DailPlanService {
 
-    private final DailPlanMapper mapper;
+    private final DailScheduleMapper mapper;
     @Override
-    public int upload(DailPlan dailPlan) {
+    public int upload(DailSchedule dailPlan) {
         log.info("DailPlanServiceImpl upload");
 
         int seq = mapper.upload(dailPlan);
@@ -26,7 +25,7 @@ public class DailPlanServiceImpl implements DailPlanService {
     }
 
     @Override
-    public int editPlan(DailPlan dailPlan) {
+    public int editPlan(DailSchedule dailPlan) {
         log.info("DailPlanServiceImpl editPlan");
         return mapper.editPlan(dailPlan);
     }
@@ -38,13 +37,13 @@ public class DailPlanServiceImpl implements DailPlanService {
     }
 
     @Override
-    public List<DailPlan> planListByDate(String date, int userNum) {
+    public List<DailSchedule> planListByDate(String date, int userNum) {
         log.info("DailPlanServiceImpl planListByDate");
         return mapper.planListByDate(date, userNum);
     }
 
     @Override
-    public List<DailPlan> planList(int userNum) {
+    public List<DailSchedule> planList(int userNum) {
         log.info("DailPlanServiceImpl planList");
         return mapper.planList(userNum);
     }

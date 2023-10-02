@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class DailPlan {
+public class DailSchedule {
 
     private int seq;
     private int userNum;

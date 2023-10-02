@@ -3,7 +3,7 @@ package spring.check.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import spring.check.plan.DailPlan;
+import spring.check.plan.DailSchedule;
 import spring.check.plan.service.DailPlanServiceImpl;
 
 @Slf4j
@@ -15,12 +15,12 @@ public class RestDailPlanController {
     private final DailPlanServiceImpl dailPlanService;
 
     @PostMapping
-    public int upload(@ModelAttribute DailPlan dailPlan){
-        return dailPlanService.upload(dailPlan);
+    public int upload(@ModelAttribute DailSchedule dailSchedule){
+        return dailPlanService.upload(dailSchedule);
     }
     @PatchMapping
-    public int editPlan(@ModelAttribute DailPlan dailPlan){
-        return dailPlanService.editPlan(dailPlan);
+    public int editPlan(@ModelAttribute DailSchedule dailSchedule){
+        return dailPlanService.editPlan(dailSchedule);
     }
     @DeleteMapping
     int deletePlan(@RequestParam int seq, @RequestParam int userNum){

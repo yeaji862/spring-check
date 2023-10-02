@@ -3,6 +3,7 @@ package spring.check.editPassLink.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import spring.check.editPassLink.CreateRandomId;
 import spring.check.editPassLink.DateCalculation;
 import spring.check.editPassLink.EditPasswordLinkInfo;
 import spring.check.editPassLink.repository.EditPassLinkMapper;
@@ -17,12 +18,15 @@ public class EditPassLinkServiceImpl {
     private final MailServiceImpl mailService;
     private final EditPassLinkMapper mapper;
     private final UserMapper userMapper;
+    private final DateCalculation dateCalculation;
 
-    public String email_sand_info(String random_id, String userMail) {
+    public String email_sand_info(String userMail) {
         log.info("EmailService email_sand_infoInsert()");
-        int Num = mapper.email_sand_infoInsert(random_id, userMail);
+        CreateRandomId createRandomId = new CreateRandomId();
+        String randomId = createRandomId.createRandomId();
+        int Num = mapper.email_sand_infoInsert(randomId, userMail);
         if (Num > 0) {
-            return (mailService.sendMail(userMail, random_id, userMapper.getUserNum(userMail))) ? "ok" : "fail";
+            return (mailService.sendMail(userMail, randomId, userMapper.getUserNum(userMail))) ? "ok" : "fail";
         }else return "fail";
     }
 
@@ -30,7 +34,7 @@ public class EditPassLinkServiceImpl {
         log.info("EmailService findId()");
         EditPasswordLinkInfo id = mapper.findId(random_id, userNum);
         if(id != null){
-            return (new DateCalculation().dateCalculation(id.getSand_date())) ? id : null;
+            return (dateCalculation.dateCalculation(id.getSand_date())) ? id : null;
         }else return null;
 
     }

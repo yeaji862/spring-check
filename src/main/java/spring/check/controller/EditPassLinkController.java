@@ -19,9 +19,7 @@ public class EditPassLinkController {
     @PostMapping
     @ResponseBody
     public String sendEmail(@RequestParam String userMail){ // 전에 보낸 링크 데이터는 자동 삭제
-        CreateRandomId createRandomId = new CreateRandomId();
-        String randomId = createRandomId.createRandomId();
-        return emailService.email_sand_info(randomId, userMail);
+        return emailService.email_sand_info(userMail);
     }
 
     @GetMapping("/{random_id}")

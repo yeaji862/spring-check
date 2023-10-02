@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import spring.check.plan.HabitPlan;
+import spring.check.plan.HabitSchedule;
 import spring.check.plan.service.HabitPlanServiceImpl;
 
 import java.util.List;
@@ -20,27 +20,27 @@ public class HabitPlanController {
 
     @GetMapping
     public String habitPlanList(Model model){
-        List<HabitPlan> habitPlans = habitPlanService.planList(0);// 세션에 저장되어 있는 userNum 값
-        model.addAttribute("habit", habitPlans);
+        List<HabitSchedule> habitSchedule = habitPlanService.planList(0);// 세션에 저장되어 있는 userNum 값
+        model.addAttribute("habit", habitSchedule);
         return "";
     }
 
     //@GetMapping
     public String habitPlanListByDate(@RequestParam String month, Model model){ // 메인 페이지에서 들어올때엔 오늘 날짜 기준으로
-        List<HabitPlan> habitPlans = habitPlanService.planListByDate(month, 0);// 세션에 저장되어 있는 userNum 값 달 뺴기
-        model.addAttribute("habit", habitPlans);
+        List<HabitSchedule> habitSchedule = habitPlanService.planListByDate(month, 0);// 세션에 저장되어 있는 userNum 값 달 뺴기
+        model.addAttribute("habit", habitSchedule);
         return "";
     }
 
     @PostMapping
-    public String upload(@ModelAttribute HabitPlan habitPlan, @RequestParam int day){
-        habitPlanService.upload(habitPlan , day);
+    public String upload(@ModelAttribute HabitSchedule habitSchedule, @RequestParam int day){
+        habitPlanService.upload(habitSchedule , day);
         return "";
     }
 
     //@PostMapping
-    public String editHabit(@ModelAttribute HabitPlan habitPlan){
-        habitPlanService.contentEdit(habitPlan);
+    public String editHabit(@ModelAttribute HabitSchedule habitSchedule){
+        habitPlanService.contentEdit(habitSchedule);
         return "";
     }
 

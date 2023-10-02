@@ -3,9 +3,8 @@ package spring.check.plan.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import spring.check.plan.HabitPlan;
-import spring.check.plan.repository.HabitPlanMapper;
-import spring.check.plan.service.HabitPlanService;
+import spring.check.plan.HabitSchedule;
+import spring.check.plan.repository.HabitScheduleMapper;
 
 import java.util.List;
 
@@ -14,17 +13,17 @@ import java.util.List;
 @Slf4j
 public class HabitPlanServiceImpl implements HabitPlanService {
 
-    private final HabitPlanMapper mapper;
+    private final HabitScheduleMapper mapper;
     @Override
-    public int upload(HabitPlan habitPlan, int day) {
+    public int upload(HabitSchedule habitSchedule, int day) {
         log.info("HabitPlanServiceImpl upload");
-        return mapper.upload(habitPlan, day);
+        return mapper.upload(habitSchedule, day);
     }
 
     @Override
-    public int contentEdit(HabitPlan habitPlan) {
+    public int contentEdit(HabitSchedule habitSchedule) {
         log.info("HabitPlanServiceImpl upload");
-        return mapper.contentEdit(habitPlan);
+        return mapper.contentEdit(habitSchedule);
     }
 
     @Override
@@ -40,13 +39,13 @@ public class HabitPlanServiceImpl implements HabitPlanService {
     }
 
     @Override
-    public List<HabitPlan> planListByDate(String date, int userNum) {
+    public List<HabitSchedule> planListByDate(String date, int userNum) {
         log.info("HabitPlanServiceImpl upload");
         return mapper.planListByDate(date, userNum);
     }
 
     @Override
-    public List<HabitPlan> planList(int userNum) {
+    public List<HabitSchedule> planList(int userNum) {
         log.info("HabitPlanServiceImpl upload");
         return mapper.planList(userNum);
     }

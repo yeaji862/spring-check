@@ -1,9 +1,12 @@
 package spring.check.editPassLink;
 
+import org.springframework.stereotype.Component;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+@Component
 public class DateCalculation {
 
     public Boolean dateCalculation(Date sand_mail){

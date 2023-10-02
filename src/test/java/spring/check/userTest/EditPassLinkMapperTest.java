@@ -15,6 +15,6 @@ public class EditPassLinkMapperTest {
     @Test
     @Transactional
     void returnUserNumTest(){
-        editPassLinkService.email_sand_info("test" , "kimy_j_@naver.com");
+        editPassLinkService.email_sand_info("kimy_j_@naver.com");
     }
 }

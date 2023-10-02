@@ -1,20 +1,20 @@
 package spring.check.plan.service;
 
-import spring.check.plan.HabitPlan;
+import spring.check.plan.HabitSchedule;
 
 import java.util.List;
 
 public interface HabitPlanService {
 
-    int upload(HabitPlan habitPlan , int day);
+    int upload(HabitSchedule habitPlan , int day);
 
-    int contentEdit(HabitPlan habitPlan);
+    int contentEdit(HabitSchedule habitPlan);
 
     int statusEdit(int userNum, boolean status, int day);
 
     int deletePlan(int seq, int userNum);
 
-    List<HabitPlan> planListByDate(String date, int userNum);
+    List<HabitSchedule> planListByDate(String date, int userNum);
 
-    List<HabitPlan> planList(int userNum);
+    List<HabitSchedule> planList(int userNum);
 }
