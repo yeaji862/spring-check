@@ -1,4 +1,4 @@
-package spring.check.plan;
+package spring.check.plan.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,8 +9,8 @@ public class DailSchedule {
 
     private int seq;
     private int userNum;
-    private int priority;
     private boolean status;
     private String createDate;
-    private String detail_content;
+    private String  achievedDate;
+    private String scheduleContent;
 }

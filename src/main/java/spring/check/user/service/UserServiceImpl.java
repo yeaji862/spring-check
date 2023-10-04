@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import spring.check.editPassLink.repository.EditPassLinkMapper;
-import spring.check.user.Members;
+import spring.check.user.dto.Members;
 import spring.check.user.UserPassEncoder;
 import spring.check.user.repository.UserMapper;
 

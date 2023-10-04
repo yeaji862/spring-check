@@ -2,7 +2,7 @@ package spring.check.oauth.naver;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import spring.check.oauth.OauthInfo;
+import spring.check.oauth.dto.OauthInfo;
 
 @Component
 public class NaverOauthInfo implements OauthInfo {

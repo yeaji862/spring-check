@@ -1,4 +1,4 @@
-package spring.check.plan;
+package spring.check.plan.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,8 +10,7 @@ public class HabitSchedule {
     private int seq;
     private int userNum;
     private String createDate;
-    private int habit_month;
-    private int habit_year;
-    private boolean[] habit_date_array;
-    private String detail_content;
+    private String achievedDate;
+    private boolean status;
+    private String scheduleContent;
 }

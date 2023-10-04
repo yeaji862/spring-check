@@ -1,4 +1,4 @@
-package spring.check.oauth;
+package spring.check.oauth.dto;
 
 public interface OauthInfo {
 

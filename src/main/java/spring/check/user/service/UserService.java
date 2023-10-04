@@ -1,6 +1,6 @@
 package spring.check.user.service;
 
-import spring.check.user.Members;
+import spring.check.user.dto.Members;
 
 public interface UserService {
 

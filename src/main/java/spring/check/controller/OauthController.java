@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import spring.check.oauth.service.Oauth2LoginServiceImpl;
 import spring.check.oauth.service.Oauth2UserService;
-import spring.check.user.Members;
+import spring.check.user.dto.Members;
 
 import javax.servlet.http.HttpSession;
 

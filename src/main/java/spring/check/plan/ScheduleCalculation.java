@@ -2,6 +2,7 @@ package spring.check.plan;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import spring.check.plan.dto.Status;
 
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -14,11 +15,12 @@ import java.util.List;
 public class ScheduleCalculation {
 
     public LinkedHashMap<Integer, String> setCalendar(List<Status> status, LinkedHashMap<Integer, String> calendar ,
-            int year, int month , int day){
+                                                      int year, int month){
         log.info("ScheduleCalculation.LinkedHashMap()");
         HashMap<Integer, String> resize = new HashMap<>();
+        int actualMaximum = getActualMaximum(year, month);
 
-        for(int i=1; i<=day; i++){ // 한 달 일자만큼 배열의 크기를 지정한다 default 값은 false
+        for(int i=1; i<=actualMaximum; i++){ // 한 달 일자만큼 배열의 크기를 지정한다 default 값은 false
             resize.put(i, "false");
         }
 
@@ -35,7 +37,19 @@ public class ScheduleCalculation {
         return calendar;
     }
 
-    public int getActualMaximum(int year, int month){
+    public int[] achievedCount(List<Status> status, int[] count){
+        for(int i=0; i<=status.size(); i++){
+            count[0] += status.get(i).getTotalCount(); // 토탈 카운트
+            count[1] += status.get(i).getAchievedCount(); // 달성 카운트
+        }
+        return count;
+    }
+
+    public int achievedPercent(int[] dail, int[] habit){
+        return ((dail[0] + habit[0]) / (dail[1] + habit[1])) * 100;
+    }
+
+    private int getActualMaximum(int year, int month){
         Calendar instance = Calendar.getInstance();
         instance.set(year, month-1, 1);
         return instance.getActualMaximum(Calendar.DAY_OF_MONTH);

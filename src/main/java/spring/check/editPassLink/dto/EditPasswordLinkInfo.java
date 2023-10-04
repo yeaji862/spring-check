@@ -1,4 +1,4 @@
-package spring.check.editPassLink;
+package spring.check.editPassLink.dto;
 
 import lombok.Getter;
 import lombok.Setter;

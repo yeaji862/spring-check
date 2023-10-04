@@ -5,8 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import spring.check.editPassLink.EditPasswordLinkInfo;
-import spring.check.editPassLink.CreateRandomId;
+import spring.check.editPassLink.dto.EditPasswordLinkInfo;
 import spring.check.editPassLink.service.EditPassLinkServiceImpl;
 
 @Slf4j

@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import spring.check.editPassLink.CreateRandomId;
 import spring.check.editPassLink.DateCalculation;
-import spring.check.editPassLink.EditPasswordLinkInfo;
+import spring.check.editPassLink.dto.EditPasswordLinkInfo;
 import spring.check.editPassLink.repository.EditPassLinkMapper;
 import spring.check.mail.MailServiceImpl;
 import spring.check.user.repository.UserMapper;

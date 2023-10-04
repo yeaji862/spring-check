@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import spring.check.oauth.OauthConfig;
-import spring.check.oauth.OauthLoginResponse;
+import spring.check.oauth.dto.OauthLoginResponse;
 
 import java.net.URI;
 

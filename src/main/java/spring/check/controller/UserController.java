@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import spring.check.user.Members;
+import spring.check.user.dto.Members;
 import spring.check.user.service.UserServiceImpl;
 import javax.servlet.http.HttpSession;
 

@@ -1,4 +1,4 @@
-package spring.check.plan;
+package spring.check.plan.dto;
 
 import lombok.Getter;
 import lombok.Setter;

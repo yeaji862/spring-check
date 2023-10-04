@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import spring.check.user.Members;
+import spring.check.user.dto.Members;
 
 @Mapper
 public interface OauthMapper {

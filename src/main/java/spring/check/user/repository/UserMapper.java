@@ -1,7 +1,7 @@
 package spring.check.user.repository;
 
 import org.apache.ibatis.annotations.*;
-import spring.check.user.Members;
+import spring.check.user.dto.Members;
 
 @Mapper
 public interface UserMapper {

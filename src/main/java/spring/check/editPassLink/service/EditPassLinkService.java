@@ -1,6 +1,6 @@
 package spring.check.editPassLink.service;
 
-import spring.check.editPassLink.EditPasswordLinkInfo;
+import spring.check.editPassLink.dto.EditPasswordLinkInfo;
 
 public interface EditPassLinkService {
 

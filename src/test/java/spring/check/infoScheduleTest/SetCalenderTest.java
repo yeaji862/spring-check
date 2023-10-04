@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import spring.check.plan.InfoSchedule;
+import spring.check.plan.dto.InfoSchedule;
 import spring.check.plan.service.ReadScheduleServiceImpl;
 
 import java.util.LinkedHashMap;

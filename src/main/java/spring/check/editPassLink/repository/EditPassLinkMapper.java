@@ -1,7 +1,7 @@
 package spring.check.editPassLink.repository;
 
 import org.apache.ibatis.annotations.*;
-import spring.check.editPassLink.EditPasswordLinkInfo;
+import spring.check.editPassLink.dto.EditPasswordLinkInfo;
 
 @Mapper
 public interface EditPassLinkMapper {
