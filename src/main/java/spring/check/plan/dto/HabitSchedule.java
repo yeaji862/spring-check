@@ -9,8 +9,8 @@ public class HabitSchedule {
 
     private int seq;
     private int userNum;
+    private boolean status;
     private String createDate;
     private String achievedDate;
-    private boolean status;
     private String scheduleContent;
 }

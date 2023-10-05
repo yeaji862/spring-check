@@ -38,6 +38,7 @@ public class ScheduleCalculation {
     }
 
     public int[] achievedCount(List<Status> status, int[] count){
+        log.info("ScheduleCalculation.achievedCount()");
         for(int i=0; i<=status.size(); i++){
             count[0] += status.get(i).getTotalCount(); // 토탈 카운트
             count[1] += status.get(i).getAchievedCount(); // 달성 카운트
@@ -45,17 +46,20 @@ public class ScheduleCalculation {
         return count;
     }
 
-    public int achievedPercent(int[] dail, int[] habit){
+    public int achievedPercent(int[] dail, int[] habit) {
+        log.info("ScheduleCalculation.achievedPercent()");
         return ((dail[0] + habit[0]) / (dail[1] + habit[1])) * 100;
     }
 
     private int getActualMaximum(int year, int month){
+        log.info("ScheduleCalculation.getActualMaximum()");
         Calendar instance = Calendar.getInstance();
         instance.set(year, month-1, 1);
         return instance.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
     private int resizeCalendar(int year, int month){
+        log.info("ScheduleCalculation.resizeCalendar()");
         LocalDate instance = LocalDate.of(year, month, 1);
         int dayOfWeek = instance.getDayOfWeek().getValue();
         return (dayOfWeek != 7) ? dayOfWeek : 0; // 7=일요일 해당 달의 1일이 일요일이라면 달력의 모양을 수정 할 필요가 없음

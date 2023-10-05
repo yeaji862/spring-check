@@ -11,6 +11,8 @@ import spring.check.oauth.service.Oauth2UserService;
 import spring.check.user.dto.Members;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequiredArgsConstructor
@@ -38,7 +40,8 @@ public class OauthController {
             if(members != null){
                 session.setAttribute("userNum" , members.getUserNum());
                 session.setAttribute("userMail" , members.getUserMail());
-                return "/check/main";
+                return "redirect:http://localhost:8080/check?date=" +
+                        LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
             }
 
         }

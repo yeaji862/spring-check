@@ -4,12 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import spring.check.plan.*;
-import spring.check.plan.dto.DailSchedule;
-import spring.check.plan.dto.HabitSchedule;
 import spring.check.plan.dto.InfoSchedule;
+import spring.check.plan.dto.Schedule;
 import spring.check.plan.dto.Status;
 import spring.check.plan.repository.ReadScheduleMapper;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -21,9 +22,11 @@ public class ReadScheduleServiceImpl implements ReadScheduleService {
     private final FeedBackServiceImpl feedBackService;
 
     @Override
-    public InfoSchedule infoSchedule(int userNum, int month, int year) {
+    public InfoSchedule infoSchedule(int userNum, String date) {
         log.info("ReadScheduleServiceImpl.infoPlan()");
         InfoSchedule infoSchedule = new InfoSchedule();
+        int year = Integer.valueOf(date.substring(0 , 4)); // yyyy.mm.dd
+        int month = Integer.valueOf(date.substring(5 , 7));
 
         try {
             List<Status> dail = readScheduleMapper.dailScheduleStatus(userNum, month, year);
@@ -45,6 +48,7 @@ public class ReadScheduleServiceImpl implements ReadScheduleService {
             infoSchedule.setHabitCalender(scheduleCalculation.setCalendar(habit, new LinkedHashMap<>(), year, month));
             infoSchedule.setAchievedPercent(scheduleCalculation.achievedPercent(dailCount, habitCount));
             infoSchedule.setAllAchievedCount(readScheduleMapper.allAchievedCount(userNum));
+
         }catch(IndexOutOfBoundsException e){
             log.error(e.getMessage());
         }
@@ -53,23 +57,25 @@ public class ReadScheduleServiceImpl implements ReadScheduleService {
     }
 
     @Override
-    public HashMap<String, Object> content(int userNum, Date date) {
+    public HashMap<String, Object> content(int userNum, String date) {
         HashMap<String, Object> content = new HashMap<>();
-        content.put("dailContent", readScheduleMapper.dailListByDate(userNum, date));
-        content.put("habitContent", readScheduleMapper.habitListByDate(userNum, date));
-        content.put("feedBackContent", feedBackService.feedBackContent(userNum, 0, 0));
+        content.put("dailContent", readScheduleMapper.dailListByDate(userNum, LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy.MM.dd"))));
+        content.put("habitContent", readScheduleMapper.habitListByDate(userNum, LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy.MM.dd"))));
+        content.put("feedBackContent", feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(0 , 4)), Integer.valueOf(date.substring(5 , 7))));
 
         return content;
     }
 
     @Override
-    public List<DailSchedule> dailListByDate(int userNum, Date date) {
-        return readScheduleMapper.dailListByDate(userNum, date);
+    public List<Schedule> dailListByDate(int userNum, String date) {
+        return readScheduleMapper.dailListByDate(userNum, LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy.MM.dd")));
     }
 
     @Override
-    public List<HabitSchedule> habitListByDate(int userNum, Date date) {
-        return readScheduleMapper.habitListByDate(userNum, date);
+    public List<Schedule> habitListByDate(int userNum, String date) {
+        return readScheduleMapper.habitListByDate(userNum, LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy.MM.dd")));
     }
+
+
 
 }

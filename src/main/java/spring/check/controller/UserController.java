@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import spring.check.user.dto.Members;
 import spring.check.user.service.UserServiceImpl;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Controller
@@ -25,10 +27,10 @@ public class UserController {
             session.setAttribute("userMail" , signInMember.getUserMail());
             session.setAttribute("userNum" , signInMember.getUserNum());
             model.addAttribute("status", "success");
-            return "check/main";
+            return "redirect:http://localhost:8080/check?date=" +
+                    LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         }else{
-            model.addAttribute("status", "fail");
-            return "index";
+            return "redirect:?status=join_fail";
         }
     }
 
@@ -45,7 +47,8 @@ public class UserController {
         if(signInMember != null){
             session.setAttribute("userMail" , signInMember.getUserMail());
             session.setAttribute("userNum" , signInMember.getUserNum());
-            return "check/main"; // ??
+            return "redirect:http://localhost:8080/check?date=" +
+                    LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         }else {
             return "redirect:?status=fail";
         }

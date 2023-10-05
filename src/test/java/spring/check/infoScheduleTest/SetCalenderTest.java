@@ -17,7 +17,7 @@ public class SetCalenderTest {
 
     @Test
     void calenderTest(){
-        InfoSchedule infoPlan = readScheduleService.infoSchedule(23, 10, 2023);
+        InfoSchedule infoPlan = readScheduleService.infoSchedule(9, "2023.10.09");
         LinkedHashMap<Integer, String> dailCalendar = infoPlan.getDailCalendar();
         LinkedHashMap<Integer, String> habitCalendar = infoPlan.getHabitCalender();
 
