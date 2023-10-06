@@ -1,7 +1,7 @@
 package spring.check.oauth;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 import spring.check.oauth.dto.OauthInfo;
 import spring.check.oauth.google.GoogleUserInfoResponse;
@@ -11,7 +11,7 @@ import spring.check.oauth.kakao.KakaoUserInfoResponse;
 import spring.check.oauth.naver.NaverUserInfoResponse;
 import spring.check.oauth.naver.NaverOauthInfo;
 
-@Component
+@Configuration
 @RequiredArgsConstructor
 public class OauthConfig {
 

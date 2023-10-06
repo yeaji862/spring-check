@@ -10,7 +10,7 @@
             text-align: center;
         }
         .calendar{
-            text-align: center;
+            margin-bottom: 5%;
         }
         .mobile-drop{
             display: none;
@@ -66,20 +66,14 @@
             color: #323233;
         }
         .icon-check {
-            position: relative;
-            width: 35px;
-            height: 35px;
+            width: 37px;
+            height: 37px;
             display: inline-block;
-            margin-right: 6px;
-            cursor: pointer;
+            margin: 1%;
         }
         .icon-check img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
+            width: 95%;
+            height: 95%;
         }
         .check{
             width: 5%;
@@ -179,4 +173,11 @@
             cursor: pointer;
             margin-right: 2%;
             padding-bottom: 1%;
+        }
+        .date-div{
+            margin-bottom: 5%;
+        }
+        .date-h{
+        font-weight: 200;
+        display: inline;
         }

@@ -57,10 +57,10 @@ public class ScheduleRestController {
         return feedBackService.feedBack(division, seq, content);
     }
 
-    @PostMapping("")
+    @PostMapping("/schedule")
     HashMap<String, List<Schedule>> scheduleListByDate(@PathVariable int userNum, @RequestParam String date){
         HashMap<String, List<Schedule>> scheduleList = new HashMap<>();
-        scheduleList.put("daily", readScheduleService.dailListByDate(userNum, date));
+        scheduleList.put("daily", readScheduleService.dailyListByDate(userNum, date));
         scheduleList.put("habit", readScheduleService.habitListByDate(userNum, date));
         return scheduleList;
     }

@@ -26,26 +26,30 @@
                     <img src="img/fix.png" style="width: 3%;">
                 </div>
 
+                <div th:each="item : ${content['habit']}">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        <p class="plan-p">보리 산책</p>
+                    <input class="form-check-input" type="checkbox" th:id="${item.seq + 'habit'}">
+                    <label class="form-check-label" th:for="${item.seq + 'habit'}">
+                        <p class="plan-p" th:text="${item.scheduleContent}"></p>
                     </label>
                 </div>
+                </div>
+
             </div>
             <hr>
-            <div class="dailPlan-div">
+
+            <div th:each="item : ${content['daily']}">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        <p class="plan-p">보리 산책</p>
+                    <input class="form-check-input" type="checkbox" th:id="${item.seq + 'daily'}">
+                    <label class="form-check-label" th:for="${item.seq + 'daily'}">
+                        <p class="plan-p" th:text="${item.scheduleContent}"></p>
                     </label>
                 </div>
             </div>
 
         </div>
 
-        <div class="col-md-5 productivity">
+        <div class="col-md-5 productivity" style="padding-left: 3%;">
             <th:block th:replace="check/fragment/info :: Info"></th:block>
         </div>
 

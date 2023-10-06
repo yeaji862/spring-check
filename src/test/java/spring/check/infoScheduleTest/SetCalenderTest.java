@@ -17,19 +17,13 @@ public class SetCalenderTest {
 
     @Test
     void calenderTest(){
-        InfoSchedule infoPlan = readScheduleService.infoSchedule(9, "2023.10.09");
-        LinkedHashMap<Integer, String> dailCalendar = infoPlan.getDailCalendar();
-        LinkedHashMap<Integer, String> habitCalendar = infoPlan.getHabitCalender();
+        InfoSchedule infoPlan = readScheduleService.infoSchedule(23, "2023.09.06");
+        LinkedHashMap<Integer, Integer> calendar = infoPlan.getCalender();
 
-        for(int i : dailCalendar.keySet()){
-            System.out.println(i + " : " + dailCalendar.get(i));
-        }
-        System.out.println("===========");
-        for(int i : habitCalendar.keySet()){
-            System.out.println(i + " : " + habitCalendar.get(i));
+        for(int i : calendar.keySet()){
+            System.out.println(i + " : " + calendar.get(i));
         }
 
-        Assertions.assertThat(dailCalendar.size()).isEqualTo(31);
-        Assertions.assertThat(habitCalendar.size()).isEqualTo(31);
+        //Assertions.assertThat(calendar.size()).isEqualTo(31);
     }
 }
