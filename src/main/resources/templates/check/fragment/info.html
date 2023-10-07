@@ -4,20 +4,20 @@
       th:fragment="Info">
 
 <div class="date-div">
-  <img src="img/leftN.png" class="arrow-img">
+  <img th:src="@{/img/leftN.png}" class="arrow-img">
   <h3 class="date-h" th:text="${infoSchedule.year + '.' + infoSchedule.nowMonth}"></h3>
-  <img src="img/rigthN.png" class="arrow-img">
+  <img th:src="@{/img/rigthN.png}" class="arrow-img">
 </div>
 <div class="calendar">
 
   <div th:each="entry, calender : ${infoSchedule.calender}" style="display:inline;">
 
     <div class="icon-check">
-      <img th:if="${entry.value < 0}" src="img/empty.png" class="check">
-      <img th:if="${entry.value == 0}" src="img/gray_gray.png" class="check">
-      <img th:if="${entry.value == 2}" src="img/gray_green.png" class="check">
-      <img th:if="${entry.value == 3}" src="img/red_gray.png" class="check">
-      <img th:if="${entry.value == 5}" src="img/red_green.png" class="check">
+      <img th:if="${entry.value < 0}" th:src="@{/img/empty.png}" class="check">
+      <img th:if="${entry.value == 0}" th:src="@{/img/gray_gray.png}" class="check">
+      <img th:if="${entry.value == 2}" th:src="@{/img/gray_green.png}" class="check">
+      <img th:if="${entry.value == 3}" th:src="@{/img/red_gray.png}" class="check">
+      <img th:if="${entry.value == 5}" th:src="@{/img/red_green.png}" class="check">
     </div>
     <br th:if="${ (calender.index + 1) % 7 == 0}">
   </div>
@@ -26,7 +26,7 @@
 </div>
 
 <div class="info-div">
-  <img src="img/iconmonstr-refresh-lined-240.png" class="refresh-img">
+  <img th:src="@{/img/iconmonstr-refresh-lined-240.png}" class="refresh-img" onclick="refresh()">
   <p class="num-p">지금까지 총 <span style="font-weight: 400;" th:text="${infoSchedule.allAchievedCount + '개'}"></span>의 일정을 달성했습니다!</p><br>
   <span>이번달 달성치</span><br>
   <div class="h2-with-text">
@@ -37,8 +37,16 @@
     </div>
   </div>
 </div>
-<small>9월 일지</small>
-<!--<textarea type="text" class="feedback-textarea" th:text="${content['feedBackContent'].feedback_content ?: ''}"></textarea>-->
-<!--<small th:text="${content['feedBackContent'].modificationDate ?: ''}"></small>-->
 
+<div th:if="${feedback} != null">
+  <small>9월 일지</small>
+  <textarea type="text" class="feedback-textarea" th:text="${feedback.fbContent}"></textarea>
+  <small th:text="${feedback.modifyDate}"></small>
+  <p th:onclick="feedbackUpdate( [[${feedback.createDate}]] )">update</p>
+</div>
+<div th:if="${feedback} == null">
+  <small>9월 일지</small>
+  <textarea type="text" class="feedback-textarea"></textarea>
+  <p onclick="feedbackInsert()">insert</p>
+</div>
 </html>

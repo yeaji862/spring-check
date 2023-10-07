@@ -34,3 +34,37 @@ function sandMail(email, callback) {
     }
   });
 }
+
+function feedbackUpdateAjax(createDate, textareaValue){
+  $.ajax({
+    url: "/check/rest/feedback",
+    method: "POST",
+    data: {"createDate" : createDate , "division" : "edit", "content" : textareaValue},
+    dataType: "text",
+    success: function (data) {
+      if (data < 0) {
+              alert('다시 시도해주세요!');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}
+
+function feedbackInsertAjax(textareaValue){
+  $.ajax({
+    url: "/check/rest/feedback",
+    method: "POST",
+    data: {"createDate" : null , "division" : "upload", "content" : textareaValue},
+    dataType: "text",
+    success: function (data) {
+      if (data < 0) {
+        alert('다시 시도해주세요!');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}

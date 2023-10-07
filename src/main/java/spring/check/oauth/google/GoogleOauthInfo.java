@@ -28,7 +28,7 @@ public class GoogleOauthInfo implements OauthInfo{
         return "https://accounts.google.com/o/oauth2/v2/auth?" +
                 "client_id=" + clientId +
                 "&&redirect_uri=" + redirectUrl +
-                "&&scope=email%20profile&&access_type=offline&&response_type=code";
+                "&&scope=profile,email&&access_type=offline&&response_type=code";
     }
     @Override
     public String tokenReqUrl(){

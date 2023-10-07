@@ -18,7 +18,7 @@
 
         <div class="col-md-6">
 
-            <h4 class="phrase-h4">&nbsp;<img src="img/iconmonstr-check-mark-15-240.png" class="check-img"> 한 달 습관을 계획해보세요.</h4>
+            <h4 class="phrase-h4">&nbsp;<img th:src="@{/img/iconmonstr-check-mark-15-240.png}" class="check-img"> 한 달 습관을 계획해보세요.</h4>
             <p class="phrase">"습관은 우리가 되고자 하는 사람을 만든다"</p>
             <input type="text" class="habitPlan-input" placeholder="하나의 습관을 작성해주세요. Enter창을 누르면 업로드 됩니다!">
 
@@ -33,13 +33,17 @@
 
         </div>
 
-        <div class="col-md-5 productivity">
+        <div class="col-md-5 productivity" style="padding-left: 3%;">
             <th:block th:replace="check/fragment/info :: Info"></th:block>
         </div>
 
     </div>
 </div>
 <th:block th:replace="check/fragment/userImg-edit-modal.html :: User-img-edit"></th:block>
+
+<script type="text/javascript" src="/js/location.js" ></script>
+<script type="text/javascript" src="/js/plan.js" ></script>
+<script type="text/javascript" src="/js/ajax.js" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -5,7 +5,6 @@ import spring.check.plan.dto.Schedule;
 import spring.check.plan.dto.Status;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -31,7 +30,7 @@ public interface ReadScheduleMapper {
     @Select("SELECT hs.*, hc.\"scheduleContent\"\n" +
             "from \"habitSchedule\" hs\n" +
             "INNER JOIN habit_content hc on hs.seq = hc.seq\n" +
-            "WHERE hs.\"userNum\" = #{userNum} AND hs.\"createDate\" = #{date}")
-    List<Schedule> habitListByDate(@Param("userNum") int userNum, @Param("date") LocalDate date);
+            "WHERE hs.\"userNum\" = #{userNum} and EXTRACT(MONTH FROM \"createDate\") = #{month} and EXTRACT(YEAR FROM \"createDate\") = #{year}")
+    List<Schedule> habitListByDate(@Param("userNum") int userNum, @Param("month") int month, @Param("year") int year);
 
 }

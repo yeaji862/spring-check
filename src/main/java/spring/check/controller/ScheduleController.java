@@ -1,11 +1,12 @@
 package spring.check.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import spring.check.plan.dto.FeedBack;
 import spring.check.plan.dto.InfoSchedule;
+import spring.check.plan.service.FeedBackServiceImpl;
 import spring.check.plan.service.ReadScheduleServiceImpl;
 
 import javax.servlet.http.HttpSession;
@@ -16,32 +17,58 @@ import javax.servlet.http.HttpSession;
 public class ScheduleController {
 
     private final ReadScheduleServiceImpl readScheduleService;
+    private final FeedBackServiceImpl feedBackService;
 
     @GetMapping
     String main(HttpSession session, Model model, @RequestParam String date){
         int userNum = (int) session.getAttribute("userNum");
+        FeedBack feedBack = (feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5, 7)), Integer.valueOf(date.substring(0, 4))));
         InfoSchedule infoSchedule = readScheduleService.infoSchedule(userNum, date);
         model.addAttribute("infoSchedule" , infoSchedule);
         model.addAttribute("content", readScheduleService.content(userNum, date));
+        model.addAttribute("feedback" , feedBack);
+
         return "check/main";
     }
 
-    @GetMapping("/refresh")
-    @CacheEvict(value = "infoSchedule",  allEntries = true)
-    String refresh(HttpSession session, Model model, @RequestParam String date){
+    @GetMapping("/habit")
+    String habitMain(HttpSession session, Model model, @RequestParam String date){
         int userNum = (int) session.getAttribute("userNum");
         InfoSchedule infoSchedule = readScheduleService.infoSchedule(userNum, date);
         model.addAttribute("infoSchedule" , infoSchedule);
         model.addAttribute("content", readScheduleService.content(userNum, date));
-        return "check/main";
+        model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
+        return "check/habit_main";
     }
 
-    @GetMapping("/{userNum}")
-    String yesterdaySchedule(Model model, @RequestParam String date, @PathVariable int userNum){
+    @GetMapping("/history")
+    String yesterdaySchedule(HttpSession session,Model model, @RequestParam String date){
+        int userNum = (int) session.getAttribute("userNum");
         InfoSchedule infoSchedule = readScheduleService.infoSchedule(userNum, date);
         model.addAttribute("infoSchedule" , infoSchedule);
         model.addAttribute("content", readScheduleService.content(userNum, date));
-        return "check/main"; // 수정
+        model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
+        return "check/plan_history";
+    }
+
+    @GetMapping("/refresh")
+    String refresh(HttpSession session, Model model, @RequestParam String date){
+        int userNum = (int) session.getAttribute("userNum");
+        InfoSchedule infoSchedule = readScheduleService.infoScheduleCacheDelete(userNum, date);
+        model.addAttribute("infoSchedule" , infoSchedule);
+        model.addAttribute("content", readScheduleService.content(userNum, date));
+        model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
+        return "check/main";
+    }
+
+    @GetMapping("/infoMobile")
+    String infoMobile(HttpSession session, Model model, @RequestParam String date){
+        int userNum = (int) session.getAttribute("userNum");
+        InfoSchedule infoSchedule = readScheduleService.infoScheduleCacheDelete(userNum, date);
+        model.addAttribute("infoSchedule" , infoSchedule);
+        model.addAttribute("content", readScheduleService.content(userNum, date));
+        model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
+        return "check/info-mobile";
     }
 }
 

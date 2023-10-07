@@ -5,15 +5,15 @@
 
 <div class="web-drop">
     <div class="dropdown">
-        <img src="img/profile.png" class="barProfile-img" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img th:src="@{/img/empty.png}" class="barProfile-img" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">이미지 변경</a></li>
-            <li><a class="dropdown-item" href="#" style="color: #b5b5b5;">로그아웃</a></li>
+            <li><a class="dropdown-item" href="/user/logout" style="color: #b5b5b5;">로그아웃</a></li>
         </ul>
     </div>
-    <img src="img/plan.png" class="bar-img"> <br>
-    <img src="img/habitN.png" class="bar-img"> <br>
-    <img src="img/historyN.png" class="bar-img">
+    <img th:src="@{/img/plan.png}" class="bar-img" onclick="planLink()"> <br>
+    <img th:src="@{/img/habitN.png}" class="bar-img" onclick="habitLink()"> <br>
+    <img th:src="@{/img/historyN.png}" class="bar-img" onclick="historyLink()">
 </div>
 
 <div class="dropdown mobile-drop">
@@ -21,11 +21,11 @@
     </button>
     <span class="span-text">check</span>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">할 일</a></li>
-        <li><a class="dropdown-item" href="#">습관</a></li>
-        <li><a class="dropdown-item" href="#">생산성</a></li>
-        <li><a class="dropdown-item" href="#">히스토리</a></li>
-        <li><a class="dropdown-item" href="#" style="color: #b5b5b5;">로그아웃</a></li>
+        <li><a class="dropdown-item" onclick="planLink()">할 일</a></li>
+        <li><a class="dropdown-item" onclick="habitLink()">습관</a></li>
+        <li><a class="dropdown-item" onclick="infoMobile()">생산성</a></li>
+        <li><a class="dropdown-item" onclick="historyLink()">히스토리</a></li>
+        <li><a class="dropdown-item" href="/user/logout" style="color: #b5b5b5;">로그아웃</a></li>
     </ul>
 </div>
 

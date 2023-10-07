@@ -36,13 +36,13 @@ public class CacheUpdatePlanServiceImpl implements UpdatePlanService{
     @Override
     public int achievedDaily(String division, int seq) {
         log.info("CacheUpdatePlanServiceImpl.achievedDaily()");
-        return achievedDaily(division, seq);
+        return updatePlanService.achievedDaily(division, seq);
     }
 
     @CacheEvict(value = "habitList", key = "#date")
     @Override
     public int achievedHabit(String division, int seq) {
         log.info("CacheUpdatePlanServiceImpl.achievedHabit()");
-        return achievedHabit(division, seq);
+        return updatePlanService.achievedHabit(division, seq);
     }
 }

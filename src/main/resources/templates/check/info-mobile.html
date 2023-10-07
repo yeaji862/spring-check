@@ -12,33 +12,16 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-md-1">
+        <div>
             <th:block th:replace="check/fragment/side :: Side"></th:block>
         </div>
 
-        <div class="col-md-6">
-
-            <h4 class="history-h4">어제 (09.08)</h4>
-            <div class="history-div">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        <p class="plan-p">보리 산책</p>
-                    </label>
-                </div>
-                <small class="time-small">완료시간 : 20:55</small>
-                <hr>
-            </div>
-
-        </div>
-
-        <div class="col-md-5 productivity" style="padding-left: 3%;">
+        <div style="padding-left: 3%;">
             <th:block th:replace="check/fragment/info :: Info"></th:block>
         </div>
 
     </div>
 </div>
-<th:block th:replace="check/fragment/userImg-edit-modal.html :: User-img-edit"></th:block>
 
 <script type="text/javascript" src="/js/location.js" ></script>
 <script type="text/javascript" src="/js/plan.js" ></script>
@@ -48,7 +31,3 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-

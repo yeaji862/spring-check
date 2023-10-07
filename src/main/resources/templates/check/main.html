@@ -23,10 +23,10 @@
             <div>
                 <div style="margin-bottom: 3%;">
                     <small>고정</small>
-                    <img src="img/fix.png" style="width: 3%;">
+                    <img th:src="@{/img/fix.png}" style="width: 3%;">
                 </div>
 
-                <div th:each="item : ${content['habit']}">
+                <div th:each="item : ${content['habitContent']}">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" th:id="${item.seq + 'habit'}">
                     <label class="form-check-label" th:for="${item.seq + 'habit'}">
@@ -38,7 +38,7 @@
             </div>
             <hr>
 
-            <div th:each="item : ${content['daily']}">
+            <div th:each="item : ${content['dailyContent']}">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" th:id="${item.seq + 'daily'}">
                     <label class="form-check-label" th:for="${item.seq + 'daily'}">
@@ -56,6 +56,10 @@
     </div>
 </div>
             <th:block th:replace="check/fragment/userImg-edit-modal.html :: User-img-edit"></th:block>
+
+    <script type="text/javascript" src="/js/location.js" ></script>
+    <script type="text/javascript" src="/js/plan.js" ></script>
+    <script type="text/javascript" src="/js/ajax.js" ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

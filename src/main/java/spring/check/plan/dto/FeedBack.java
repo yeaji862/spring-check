@@ -9,7 +9,7 @@ public class FeedBack {
 
     private int seq;
     private int userNum;
-    private String feedback_content;
+    private String fbContent;
     private String createDate;
-    private String modificationDate;
+    private String modifyDate;
 }
