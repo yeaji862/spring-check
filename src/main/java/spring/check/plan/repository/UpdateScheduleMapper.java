@@ -2,6 +2,7 @@ package spring.check.plan.repository;
 
 import org.apache.ibatis.annotations.*;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Mapper
@@ -32,11 +33,11 @@ public interface UpdateScheduleMapper {
     @Update("update \"dailySchedule\" set \"achievedDate\" = null, status = false where seq = #{seq}")
     int checkOffDaily(@Param("seq") int seq);
 
-    @Insert("insert into \"habitAchieved\" (seq, \"userNum\", \"createDate\", status, \"achievedDate\")\n" +
-            "select seq , \"userNum\" , \"createDate\" , true , TO_CHAR(NOW(), 'YYYY.MM.DD HH24:MI')\n" +
+    @Insert("insert into \"habitAchieved\" (seq, \"userNum\", \"createDate\", status, \"achievedDate\", \"insertDate\")\n" +
+            "select seq , \"userNum\" , \"createDate\" , true , TO_CHAR(NOW(), 'YYYY.MM.DD HH24:MI') , #{date}\n" +
             "from \"habitSchedule\" where seq = #{seq}")
-    int checkOnHabit(@Param("seq") int seq);
+    int checkOnHabit(@Param("seq") int seq, @Param("date") LocalDate date);
 
-    @Delete("delete from \"habitAchieved\" where seq = #{seq}")
-    int checkOffHabit(@Param("seq") int seq);
+    @Delete("delete from \"habitAchieved\" where seq = #{seq} and \"insertDate\" = #{date}")
+    int checkOffHabit(@Param("seq") int seq, @Param("date") LocalDate date);
 }

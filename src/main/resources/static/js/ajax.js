@@ -68,3 +68,72 @@ function feedbackInsertAjax(textareaValue){
     }
   });
 }
+
+function habitOnAjax(seq, date){
+alert(seq);
+  $.ajax({
+    url: "/check/rest/habit",
+    method: "POST",
+    data: {"division" : "on", "seq" : seq, "date" : date},
+    dataType: "text",
+    success: function (data) {
+      if (data > 0) {
+        alert('성공');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}
+
+function habitOffAjax(seq, date){
+  $.ajax({
+    url: "/check/rest/habit",
+    method: "POST",
+    data: {"division" : "off", "seq" : seq, "date" : date},
+    dataType: "text",
+    success: function (data) {
+      if (data > 0) {
+        alert('성공');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}
+
+function dailyOnAjax(seq){
+  $.ajax({
+    url: "/check/rest/daily",
+    method: "POST",
+    data: {"division" : "on", "seq" : seq},
+    dataType: "text",
+    success: function (data) {
+      if (data > 0) {
+        alert('성공');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}
+
+function dailyOffAjax(seq){
+  $.ajax({
+    url: "/check/rest/daily",
+    method: "POST",
+    data: {"division" : "off", "seq" : seq},
+    dataType: "text",
+    success: function (data) {
+      if (data > 0) {
+        alert('성공');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}

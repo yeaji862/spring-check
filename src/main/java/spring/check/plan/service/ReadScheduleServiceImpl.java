@@ -60,8 +60,8 @@ public class ReadScheduleServiceImpl implements ReadScheduleService {
     public HashMap<String, Object> content(int userNum, String date) {
         log.info("ReadScheduleServiceImpl.content()");
         HashMap<String, Object> content = new HashMap<>();
-        content.put("dailyContent", readScheduleMapper.dailListByDate(userNum, LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy.MM.dd"))));
-        content.put("habitContent", readScheduleMapper.habitListByDate(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
+        content.put("daily", readScheduleMapper.dailListByDate(userNum, LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy.MM.dd"))));
+        content.put("habit", readScheduleMapper.habitListByDate(userNum, LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy.MM.dd")), Integer.valueOf(date.substring(5, 7)), Integer.valueOf(date.substring(0, 4))));
         content.put("feedBackContent", feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
         // 한달 습관 페이지에는 daily 내용이 필요없음
         return content;
@@ -76,7 +76,7 @@ public class ReadScheduleServiceImpl implements ReadScheduleService {
     @Cacheable(value = "habitList", key = "#date")
     @Override
     public List<Schedule> habitListByDate(int userNum, String date) {
-        return readScheduleMapper.habitListByDate(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4)));
+        return readScheduleMapper.habitListByDate(userNum, LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy.MM.dd")), Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4)));
     }
 
 }

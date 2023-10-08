@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import spring.check.plan.repository.UpdateScheduleMapper;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Service
@@ -48,7 +50,8 @@ public class UpdatePlanServiceImpl implements UpdatePlanService{
         return (division.equals("on")) ? updateScheduleMapper.checkOnDaily(seq) : updateScheduleMapper.checkOffDaily(seq);
     }
     @Override
-    public int achievedHabit(String division, int seq){
-        return (division.equals("on")) ? updateScheduleMapper.checkOnHabit(seq) : updateScheduleMapper.checkOffHabit(seq);
+    public int achievedHabit(String division, int seq, String date){
+        return (division.equals("on")) ? updateScheduleMapper.checkOnHabit(seq, LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy.MM.dd"))) :
+                updateScheduleMapper.checkOffHabit(seq, LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy.MM.dd")));
     }
 }

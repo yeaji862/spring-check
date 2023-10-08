@@ -45,8 +45,8 @@ public class ScheduleRestController {
     }
 
     @PostMapping("/habit")
-    int achievedHabit(@RequestParam String division, @RequestParam int seq){
-        return updatePlanService.achievedHabit(division, seq);
+    int achievedHabit(@RequestParam String division, @RequestParam int seq, @RequestParam String date){
+        return updatePlanService.achievedHabit(division, seq, date);
     }
 
     @PostMapping("/feedback")

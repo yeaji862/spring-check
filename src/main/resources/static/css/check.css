@@ -181,3 +181,7 @@
         font-weight: 200;
         display: inline;
         }
+        .checkOn{
+        color: #888888;
+        text-decoration-line: line-through;
+        }

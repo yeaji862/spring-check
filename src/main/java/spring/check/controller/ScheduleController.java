@@ -27,7 +27,7 @@ public class ScheduleController {
         model.addAttribute("infoSchedule" , infoSchedule);
         model.addAttribute("content", readScheduleService.content(userNum, date));
         model.addAttribute("feedback" , feedBack);
-
+        model.addAttribute("date", date);
         return "check/main";
     }
 
@@ -38,6 +38,7 @@ public class ScheduleController {
         model.addAttribute("infoSchedule" , infoSchedule);
         model.addAttribute("content", readScheduleService.content(userNum, date));
         model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
+        model.addAttribute("date", date);
         return "check/habit_main";
     }
 
@@ -48,6 +49,7 @@ public class ScheduleController {
         model.addAttribute("infoSchedule" , infoSchedule);
         model.addAttribute("content", readScheduleService.content(userNum, date));
         model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
+        model.addAttribute("date", date);
         return "check/plan_history";
     }
 
@@ -58,6 +60,7 @@ public class ScheduleController {
         model.addAttribute("infoSchedule" , infoSchedule);
         model.addAttribute("content", readScheduleService.content(userNum, date));
         model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
+        model.addAttribute("date", date);
         return "check/main";
     }
 
@@ -68,6 +71,7 @@ public class ScheduleController {
         model.addAttribute("infoSchedule" , infoSchedule);
         model.addAttribute("content", readScheduleService.content(userNum, date));
         model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
+        model.addAttribute("date", date);
         return "check/info-mobile";
     }
 }

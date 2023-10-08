@@ -24,17 +24,19 @@ public class ScheduleCalculation {
 
         /**
          *      해당 날짜의 daily 를 다 달성하면 점수 2점을 더한다
-         *      해당 날짜의 habit 을 다 달성하면 점수 3저을 더한다
+         *      해당 날짜의 habit 을 다 달성하면 점수 3점을 더한다
          */
 
         for(int i=0; i<daily.size(); i++){
             Integer num = resize.get(daily.get(i).getDay());
             if(daily.get(i).getAchievedCount() == daily.get(i).getTotalCount()) resize.put(daily.get(i).getDay(), num + 2);
+
         }
 
         for(int i=0; i<habit.size(); i++){
             Integer num = resize.get(habit.get(i).getDay());
-            if(habit.get(i).getAchievedCount() == habit.get(i).getTotalCount()) resize.put(daily.get(i).getDay(), num + 3);
+            if(habit.get(i).getAchievedCount() == habit.get(i).getTotalCount()) resize.put(habit.get(i).getDay(), num + 3);
+
         }
 
         for(int i=0; i<resizeCalendar(year,month); i++){
