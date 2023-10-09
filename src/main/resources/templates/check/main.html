@@ -17,70 +17,17 @@
         </div>
 
         <div class="col-md-6">
+            <input type="hidden" th:value="${date}" class="todayDate">
 
-            <input type="text" class="plan-input" placeholder="일정을 작성해주세요. Enter창을 누르면 업로드 됩니다!">
+            <input type="text" class="plan-input dailyInput" placeholder="일정을 작성해주세요. Enter창을 누르면 업로드 됩니다!">
 
-            <div>
                 <div style="margin-bottom: 3%;">
                     <small>고정</small>
                     <img th:src="@{/img/fix.png}" style="width: 3%;">
                 </div>
-
-                <div class="habitCheck">
-                    <div th:each="item : ${content['habit']}">
-                        <div th:class="${'habitPosition' + item.seq}">
-                            <div th:if="${not item.status}">
-                                <div class="form-check" th:id="${'habit' + item.seq}">
-                                    <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-habit'}">
-                                    <label class="form-check-label" th:id="${item.seq + 'checkbox-habit'}">
-                                        <p class="plan-p" th:text="${item.scheduleContent}" th:onclick="habitOn( [[${item.seq}]], [[${date}]] )"></p>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="habitCheckOn">
-                        <div th:each="item : ${content['habit']}">
-                            <div th:if="${item.status}">
-                                    <div class="form-check" th:id="${'habit' + item.seq}">
-                                        <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-habit'}" checked>
-                                        <label class="form-check-label" th:id="${item.seq + 'checkbox-habit'}">
-                                            <p class="plan-p checkOn" th:text="${item.scheduleContent}" th:onclick="habitOff( [[${item.seq}]], [[${date}]] )"></p>
-                                        </label>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <th:block th:replace="check/fragment/habitContent.html :: HabitContent"></th:block>
             <hr>
-            <div class="dailyCheck">
-                <div th:each="item : ${content['daily']}">
-                    <div th:class="${'dailyPosition' + item.seq}">
-                        <div th:if="${not item.status}">
-                            <div class="form-check" th:id="${'daily' + item.seq}">
-                                <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-daily'}">
-                                <label class="form-check-label" th:id="${item.seq + 'checkbox-daily'}">
-                                    <p class="plan-p" th:text="${item.scheduleContent}" th:onclick="dailyOn( [[${item.seq}]] )"></p>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dailyCheckOn">
-                    <div th:each="item : ${content['daily']}">
-                        <div th:if="${item.status}">
-                            <div class="form-check" th:id="${'daily' + item.seq}">
-                                <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-daily'}" checked>
-                                <label class="form-check-label" th:id="${item.seq + 'checkbox-daily'}">
-                                    <p class="plan-p checkOn" th:text="${item.scheduleContent}" th:onclick="dailyOff( [[${item.seq}]] )"></p>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <th:block th:replace="check/fragment/dailyContent.html :: DailyContent"></th:block>
         </div>
 
         <div class="col-md-5 productivity" style="padding-left: 3%;">
@@ -94,6 +41,8 @@
     <script type="text/javascript" src="/js/location.js" ></script>
     <script type="text/javascript" src="/js/plan.js" ></script>
     <script type="text/javascript" src="/js/ajax.js" ></script>
+    <script type="text/javascript" src="/js/daily.js" ></script>
+    <script type="text/javascript" src="/js/habit.js" ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

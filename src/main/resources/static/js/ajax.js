@@ -137,3 +137,41 @@ function dailyOffAjax(seq){
     }
   });
 }
+
+function dailyUpload(content, callback){
+  $.ajax({
+    url: "/check/rest/daily/upload",
+    method: "POST",
+    data: {"division" : "upload", "content" : content},
+    dataType: "text",
+    success: function (data) {
+        if (data > 0) {
+            callback(data);
+        }else{
+            alert('다시 시도해주세요!');
+        }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}
+
+function habitUpload(content, callback){
+  $.ajax({
+    url: "/check/rest/habit/upload",
+    method: "POST",
+    data: {"division" : "upload", "content" : content},
+    dataType: "text",
+    success: function (data) {
+      if (data > 0) {
+        callback(data);
+      }else{
+        alert('다시 시도해주세요!');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}

@@ -23,20 +23,20 @@ public class ScheduleRestController {
     private final ReadScheduleServiceImpl readScheduleService;
     private final FeedBackServiceImpl feedBackService;
 
-    @PostMapping("/daily/{userNum}")
+    @PostMapping("/daily/upload")
     int daily(@RequestParam String division,
-              @PathVariable int userNum,
               @RequestParam(required = false) Optional<Integer> seq,
-              @RequestParam(required = false) Optional<String> content){
-        return updatePlanService.daily(division, seq, userNum, content);
+              @RequestParam(required = false) Optional<String> content,
+              HttpSession session){
+        return updatePlanService.daily(division, seq, (int) session.getAttribute("userNum"), content);
     }
 
-    @PostMapping("/habit/{userNum}")
+    @PostMapping("/habit/upload")
     int habit(@RequestParam String division,
-              @PathVariable int userNum,
               @RequestParam(required = false) Optional<Integer> seq,
-              @RequestParam(required = false) Optional<String> content){
-        return updatePlanService.habit(division, seq, userNum, content);
+              @RequestParam(required = false) Optional<String> content,
+              HttpSession session){
+        return updatePlanService.habit(division, seq, (int) session.getAttribute("userNum"), content);
     }
 
     @PostMapping("/daily")

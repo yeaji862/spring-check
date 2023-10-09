@@ -30,50 +30,47 @@ function feedbackInsertAjax(){
     feedInsert(textareaValue);
 }
 
-function habitOn(seq, date){
+function habitOn(seq){
+    var date = document.querySelector('.todayDate').value;
+    alert(date);
     habitOnAjax(seq, date);
-    scheduleChangeOn(seq, 'habit', date);
+    scheduleChangeOn(seq, 'habit');
 }
 
-function habitOff(seq, date){
+function habitOff(seq){
+    var date = document.querySelector('.todayDate').value;
     habitOffAjax(seq, date);
-    scheduleChangeOff(seq, 'habit', date);
+    scheduleChangeOff(seq, 'habit');
 }
 
 function dailyOn(seq){
     dailyOnAjax(seq);
-    scheduleChangeOn(seq, 'daily', null);
+    scheduleChangeOn(seq, 'daily');
 }
 
 function dailyOff(seq){
     dailyOffAjax(seq);
-    scheduleChangeOff(seq, 'daily', null);
+    scheduleChangeOff(seq, 'daily');
 }
 
-function scheduleChangeOn(seq, schedule, date){
+function scheduleChangeOn(seq, schedule){
+    var date = document.querySelector('.todayDate').value;
     var animatedText = document.getElementById(schedule + seq);
     var checkOnDiv = document.querySelector('.'+ schedule+'CheckOn');
     var checkbox = document.getElementById(seq + 'checkbox-' + schedule);
     checkbox.checked = true;
     checkOnDiv.appendChild(animatedText);
     animatedText.querySelector('p').classList.add('checkOn');
-    if(schedule == 'habit'){
-        animatedText.querySelector('p').setAttribute('onclick', schedule + 'Off('+seq+' , "'+date+'")');
-    }else{
-        animatedText.querySelector('p').setAttribute('onclick', schedule + 'Off('+seq+')');
-    }
+    document.getElementById(schedule+seq).setAttribute('onclick', schedule + 'Off('+seq+')');
 }
 
-function scheduleChangeOff(seq, schedule, date){
+function scheduleChangeOff(seq, schedule){
+    var date = document.querySelector('.todayDate').value;
     var animatedText = document.getElementById(schedule + seq);
     var checkOffDiv = document.querySelector('.'+ schedule+'Position' + seq);
     var checkbox = document.getElementById(seq + 'checkbox-' + schedule);
     checkbox.checked = false;
     checkOffDiv.appendChild(animatedText);
     animatedText.querySelector('p').classList.remove('checkOn');
-    if(schedule == 'habit'){
-        animatedText.querySelector('p').setAttribute('onclick', schedule + 'On('+seq+' , "'+date+'")');
-    }else{
-        animatedText.querySelector('p').setAttribute('onclick', schedule + 'On('+seq+')');
-    }
+    document.getElementById(schedule+seq).setAttribute('onclick', schedule + 'On('+seq+')');
 }

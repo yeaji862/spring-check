@@ -19,15 +19,62 @@
         <div class="col-md-6">
 
             <h4 class="history-h4">어제 (09.08)</h4>
-            <div class="history-div">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        <p class="plan-p">보리 산책</p>
-                    </label>
+            <input type="hidden" th:value="${date}" class="todayDate">
+
+            <div class="habitCheck">
+                <div th:each="item : ${content['habit']}">
+                    <div th:class="${'habitPosition' + item.seq}">
+                        <div th:if="${not item.status}">
+                            <div class="form-check" th:id="${'habit' + item.seq}" th:onclick="habitOn( [[${item.seq}]], [[${date}]] )">
+                                <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-habit'}">
+                                <label class="form-check-label" th:id="${item.seq + 'checkbox-habit'}">
+                                    <p class="plan-p" th:text="${item.scheduleContent}"></p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <small class="time-small">완료시간 : 20:55</small>
-                <hr>
+            </div>
+
+            <div class="habitCheckOn">
+                <div th:each="item : ${content['habit']}">
+                    <div th:if="${item.status}">
+                        <div class="form-check" th:id="${'habit' + item.seq}" th:onclick="habitOff( [[${item.seq}]], [[${date}]] )">
+                            <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-habit'}" checked>
+                            <label class="form-check-label" th:id="${item.seq + 'checkbox-habit'}">
+                                <p class="plan-p checkOn" th:text="${item.scheduleContent}"></p>
+                                <small th:text="${item.achievedDate}"></small>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="dailyCheck">
+                <div th:each="item : ${content['daily']}">
+                    <div th:class="${'dailyPosition' + item.seq}">
+                        <div th:if="${not item.status}">
+                            <div class="form-check" th:id="${'daily' + item.seq}" th:onclick="dailyOn( [[${item.seq}]] )">
+                                <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-daily'}">
+                                <label class="form-check-label" th:id="${item.seq + 'checkbox-daily'}">
+                                    <p class="plan-p" th:text="${item.scheduleContent}"></p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dailyCheckOn">
+                <div th:each="item : ${content['daily']}">
+                    <div th:if="${item.status}">
+                        <div class="form-check" th:id="${'daily' + item.seq}" th:onclick="dailyOff( [[${item.seq}]] )">
+                            <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-daily'}" checked>
+                            <label class="form-check-label" th:id="${item.seq + 'checkbox-daily'}">
+                                <p class="plan-p checkOn" th:text="${item.scheduleContent}"></p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -43,6 +90,8 @@
 <script type="text/javascript" src="/js/location.js" ></script>
 <script type="text/javascript" src="/js/plan.js" ></script>
 <script type="text/javascript" src="/js/ajax.js" ></script>
+<script type="text/javascript" src="/js/daily.js" ></script>
+<script type="text/javascript" src="/js/habit.js" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

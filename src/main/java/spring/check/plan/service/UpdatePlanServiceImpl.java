@@ -21,11 +21,11 @@ public class UpdatePlanServiceImpl implements UpdatePlanService{
         int num = 0;
         switch (division){
             case "upload" :
-                num = updateScheduleMapper.uploadDaily(userNum, content); break;
+                num = updateScheduleMapper.uploadDaily(userNum, content.orElse("")); break;
             case "edit" :
-                num = updateScheduleMapper.editDaily(seq, content); break;
+                num = updateScheduleMapper.editDaily(seq.orElse(0) , content.orElse("")); break;
             case "delete" :
-                num = updateScheduleMapper.deleteDaily(seq); break;
+                num = updateScheduleMapper.deleteDaily(seq.orElse(0)); break;
         }
 
         return num;
@@ -36,11 +36,11 @@ public class UpdatePlanServiceImpl implements UpdatePlanService{
         int num = 0;
         switch (division){
             case "upload" :
-                num = updateScheduleMapper.uploadHabit(userNum, content); break;
+                num = updateScheduleMapper.uploadHabit(userNum, content.orElse("")); break;
             case "edit" :
-                num = updateScheduleMapper.editHabit(seq, content); break;
+                num = updateScheduleMapper.editHabit(seq.orElse(0), content.orElse("")); break;
             case "delete" :
-                num = updateScheduleMapper.deleteHabit(seq); break;
+                num = updateScheduleMapper.deleteHabit(seq.orElse(0)); break;
         }
 
         return num;
