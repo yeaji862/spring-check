@@ -23,8 +23,23 @@ function refresh(){
     window.location.href="/check/refresh/?date=" + currentDate;
 }
 
-function planLink(){
-    var currentDate = today();
+function planLink(date){
+    if(date == null){
+        var currentDate = today();
+    }else{
+        var parts = date.split('.');
+
+        if (parts.length === 3) {
+        var year = parts[0];
+        var month = parts[1];
+        var day = parts[2];
+
+        if (day.length === 1) {
+            day = "0" + day;
+        }
+        var currentDate = year + "." + month + "." + day;
+      }
+    }
     window.location.href="/check?date=" + currentDate;
 }
 

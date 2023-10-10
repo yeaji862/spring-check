@@ -4,9 +4,11 @@
       th:fragment="Info">
 
 <div class="date-div">
-  <img th:src="@{/img/leftN.png}" class="arrow-img">
+  <img th:if="${mobile} == null" th:src="@{/img/leftN.png}" class="arrow-img" th:onclick="beforeDate( [[${infoSchedule.year + '.' + infoSchedule.nowMonth}]] )">
+  <img th:if="${mobile} != null" th:src="@{/img/leftN.png}" class="arrow-img" th:onclick="mobileBeforeDate( [[${infoSchedule.year + '.' + infoSchedule.nowMonth}]] )">
   <h3 class="date-h" th:text="${infoSchedule.year + '.' + infoSchedule.nowMonth}"></h3>
-  <img th:src="@{/img/rigthN.png}" class="arrow-img">
+  <img th:if="${mobile} == null" th:src="@{/img/rigthN.png}" class="arrow-img" th:onclick="afterDate( [[${infoSchedule.year + '.' + infoSchedule.nowMonth}]] )">
+  <img th:if="${mobile} != null" th:src="@{/img/rigthN.png}" class="arrow-img" th:onclick="mobileAfterDate( [[${infoSchedule.year + '.' + infoSchedule.nowMonth}]] )">
 </div>
 <div class="calendar">
 
@@ -14,10 +16,10 @@
 
     <div class="icon-check">
       <img th:if="${entry.value < 0}" th:src="@{/img/empty.png}" class="check">
-      <img th:if="${entry.value == 0}" th:src="@{/img/gray_gray.png}" class="check">
-      <img th:if="${entry.value == 2}" th:src="@{/img/gray_green.png}" class="check">
-      <img th:if="${entry.value == 3}" th:src="@{/img/red_gray.png}" class="check">
-      <img th:if="${entry.value == 5}" th:src="@{/img/red_green.png}" class="check">
+      <img th:if="${entry.value == 0}" th:src="@{/img/gray_gray.png}" class="check" th:onclick="planLink( [[${infoSchedule.year + '.' + infoSchedule.nowMonth + '.' + entry.key}]] )">
+      <img th:if="${entry.value == 2}" th:src="@{/img/gray_green.png}" class="check" th:onclick="planLink( [[${infoSchedule.year + '.' + infoSchedule.nowMonth + '.' + entry.key}]] )">
+      <img th:if="${entry.value == 3}" th:src="@{/img/red_gray.png}" class="check" th:onclick="planLink( [[${infoSchedule.year + '.' + infoSchedule.nowMonth + '.' + entry.key}]] )">
+      <img th:if="${entry.value == 5}" th:src="@{/img/red_green.png}" class="check" th:onclick="planLink( [[${infoSchedule.year + '.' + infoSchedule.nowMonth + '.' + entry.key}]] )">
     </div>
     <br th:if="${ (calender.index + 1) % 7 == 0}">
   </div>
@@ -45,7 +47,7 @@
   <p th:onclick="feedbackUpdate( [[${feedback.createDate}]] )">update</p>
 </div>
 <div th:if="${feedback} == null">
-  <small>9월 일지</small>
+  <small th:text="${infoSchedule.nowMonth + '월 일지'}"></small>
   <textarea type="text" class="feedback-textarea"></textarea>
   <p onclick="feedbackInsert()">insert</p>
 </div>

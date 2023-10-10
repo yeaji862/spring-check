@@ -23,15 +23,16 @@ public class ScheduleRestController {
     private final ReadScheduleServiceImpl readScheduleService;
     private final FeedBackServiceImpl feedBackService;
 
-    @PostMapping("/daily/upload")
+    @PostMapping("/daily/status")
     int daily(@RequestParam String division,
               @RequestParam(required = false) Optional<Integer> seq,
               @RequestParam(required = false) Optional<String> content,
+              @RequestParam(required = false) Optional<String> date,
               HttpSession session){
-        return updatePlanService.daily(division, seq, (int) session.getAttribute("userNum"), content);
+        return updatePlanService.daily(division, seq, (int) session.getAttribute("userNum"), content, date);
     }
 
-    @PostMapping("/habit/upload")
+    @PostMapping("/habit/status")
     int habit(@RequestParam String division,
               @RequestParam(required = false) Optional<Integer> seq,
               @RequestParam(required = false) Optional<String> content,
@@ -40,13 +41,20 @@ public class ScheduleRestController {
     }
 
     @PostMapping("/daily")
-    int achievedDaily(@RequestParam String division, @RequestParam int seq){
-        return updatePlanService.achievedDaily(division, seq);
+    int achievedDaily(@RequestParam String division,
+                      @RequestParam int seq,
+                      @RequestParam(required = false) String cache){
+        return (cache == null) ? updatePlanService.achievedDaily(division, seq) :
+                updatePlanService.cacheAchievedDaily(division, seq);
     }
 
     @PostMapping("/habit")
-    int achievedHabit(@RequestParam String division, @RequestParam int seq, @RequestParam String date){
-        return updatePlanService.achievedHabit(division, seq, date);
+    int achievedHabit(@RequestParam String division,
+                      @RequestParam int seq,
+                      @RequestParam String date,
+                      @RequestParam(required = false) String cache){
+        return (cache == null) ? updatePlanService.achievedHabit(division, seq, date) :
+                updatePlanService.cacheAchievedHabit(division, seq, date);
     }
 
     @PostMapping("/feedback")

@@ -74,7 +74,12 @@
         .icon-check img {
             width: 95%;
             height: 95%;
+            cursor: pointer;
         }
+        .icon-check img:hover {
+            filter: brightness(70%);
+        }
+
         .check{
             width: 5%;
         }
@@ -178,10 +183,16 @@
             margin-bottom: 5%;
         }
         .date-h{
-        font-weight: 200;
-        display: inline;
+            font-weight: 200;
+            display: inline;
         }
         .checkOn{
         color: #888888;
-        text-decoration-line: line-through;
+            text-decoration-line: line-through;
+        }
+        .div-inline{
+            display: inline-block;
+        }
+        .none-btn{
+            display: none;
         }

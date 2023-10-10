@@ -28,11 +28,12 @@ public interface ReadScheduleMapper {
     List<Schedule> dailListByDate(@Param("userNum") int userNum, @Param("date") LocalDate date);
 
     @Select("SELECT hs.*, hc.\"scheduleContent\",\n" +
-            "CASE WHEN (SELECT COUNT(*) FROM \"habitAchieved\" WHERE seq = hs.seq and \"insertDate\" = #{date} and status = true) >= 1 THEN 'true' ELSE 'false' END AS status \n" +
+            "CASE WHEN \n" +
+            "(SELECT COUNT(*) FROM \"habitAchieved\" WHERE seq = hs.seq and \"insertDate\" = #{date} and status = true)  >= 1 THEN 'true' ELSE 'false' END AS status,\n" +
+            "(select \"achievedDate\" from \"habitAchieved\" where seq = hs.seq and \"insertDate\" = #{date}) as \"achievedDate\" " +
             "from \"habitSchedule\" hs\n" +
             "INNER JOIN habit_content hc on hs.seq = hc.seq\n" +
             "WHERE hs.\"userNum\" = #{userNum}\n" +
-            "and EXTRACT(MONTH FROM \"createDate\") = #{month} and EXTRACT(YEAR FROM \"createDate\") = #{year}")
+            "and EXTRACT(MONTH FROM hs.\"createDate\") = #{month} and EXTRACT(YEAR FROM hs.\"createDate\") = #{year}")
     List<Schedule> habitListByDate(@Param("userNum") int userNum, @Param("date") LocalDate date ,@Param("month") int month, @Param("year") int year);
-
 }

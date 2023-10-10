@@ -138,11 +138,11 @@ function dailyOffAjax(seq){
   });
 }
 
-function dailyUpload(content, callback){
+function dailyUpload(content, date, callback){
   $.ajax({
-    url: "/check/rest/daily/upload",
+    url: "/check/rest/daily/status",
     method: "POST",
-    data: {"division" : "upload", "content" : content},
+    data: {"division" : "upload", "content" : content, "date" : date},
     dataType: "text",
     success: function (data) {
         if (data > 0) {
@@ -159,13 +159,89 @@ function dailyUpload(content, callback){
 
 function habitUpload(content, callback){
   $.ajax({
-    url: "/check/rest/habit/upload",
+    url: "/check/rest/habit/status",
     method: "POST",
     data: {"division" : "upload", "content" : content},
     dataType: "text",
     success: function (data) {
       if (data > 0) {
         callback(data);
+      }else{
+        alert('다시 시도해주세요!');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}
+
+function dailyContentDelete(seq, callback){
+  $.ajax({
+    url: "/check/rest/daily/status",
+    method: "POST",
+    data: {"division" : "delete", "seq" : seq},
+    dataType: "text",
+    success: function (data) {
+      if (data > 0) {
+        callback(data);
+      }else{
+        alert('다시 시도해주세요!');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}
+
+function habitContentDelete(seq, callback){
+  $.ajax({
+    url: "/check/rest/habit/status",
+    method: "POST",
+    data: {"division" : "delete", "seq" : seq},
+    dataType: "text",
+    success: function (data) {
+      if (data > 0) {
+        callback(data);
+      }else{
+        alert('다시 시도해주세요!');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}
+
+function dailyContentEdit(seq, content, callback){
+  $.ajax({
+    url: "/check/rest/daily/status",
+    method: "POST",
+    data: {"division" : "edit", "seq" : seq, "content" : content},
+    dataType: "text",
+    success: function (data) {
+      if (data > 0) {
+        callback(true);
+      }else{
+        alert('다시 시도해주세요!');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}
+
+function habitContentEdit(seq, content, callback){
+  $.ajax({
+    url: "/check/rest/habit/status",
+    method: "POST",
+    data: {"division" : "edit", "seq" : seq, "content" : content},
+    dataType: "text",
+    success: function (data) {
+      if (data > 0) {
+        callback(true);
       }else{
         alert('다시 시도해주세요!');
       }

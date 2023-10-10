@@ -72,6 +72,7 @@ public class ScheduleController {
         model.addAttribute("content", readScheduleService.content(userNum, date));
         model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
         model.addAttribute("date", date);
+        model.addAttribute("mobile", "mobile");
         return "check/info-mobile";
     }
 }

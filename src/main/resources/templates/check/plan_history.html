@@ -18,18 +18,24 @@
 
         <div class="col-md-6">
 
-            <h4 class="history-h4">어제 (09.08)</h4>
+            <h4 class="history-h4">어제</h4>
+            <p th:text="${date}"></p>
             <input type="hidden" th:value="${date}" class="todayDate">
 
             <div class="habitCheck">
                 <div th:each="item : ${content['habit']}">
                     <div th:class="${'habitPosition' + item.seq}">
                         <div th:if="${not item.status}">
-                            <div class="form-check" th:id="${'habit' + item.seq}" th:onclick="habitOn( [[${item.seq}]], [[${date}]] )">
-                                <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-habit'}">
-                                <label class="form-check-label" th:id="${item.seq + 'checkbox-habit'}">
-                                    <p class="plan-p" th:text="${item.scheduleContent}"></p>
-                                </label>
+                            <div class="form-check" th:id="${'habit' + item.seq}">
+                                <div th:onclick="habitOn( [[${item.seq}]], [[${date}]] )" th:class="${'div-inline habitDiv' + item.seq}">
+                                    <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-habit'}">
+                                    <label class="form-check-label" th:id="${item.seq + 'checkbox-habit'}">
+                                        <p th:class="${'plan-p contentP habitP' + item.seq}" th:text="${item.scheduleContent}"></p>
+                                    </label>
+                                </div>
+                                <input th:value="${item.scheduleContent}" th:class="${'modify-input none-btn input' + item.seq}">
+                                <button th:onclick="habitModify( [[${item.seq}]] )" class="modify-btn none-btn">수정</button>
+                                <button th:onclick="habitDelete( [[${item.seq}]] )" class="delete-btn none-btn">삭제</button>
                             </div>
                         </div>
                     </div>
@@ -39,12 +45,15 @@
             <div class="habitCheckOn">
                 <div th:each="item : ${content['habit']}">
                     <div th:if="${item.status}">
-                        <div class="form-check" th:id="${'habit' + item.seq}" th:onclick="habitOff( [[${item.seq}]], [[${date}]] )">
-                            <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-habit'}" checked>
-                            <label class="form-check-label" th:id="${item.seq + 'checkbox-habit'}">
-                                <p class="plan-p checkOn" th:text="${item.scheduleContent}"></p>
+                        <div class="form-check" th:id="${'habit' + item.seq}">
+                            <div th:onclick="habitOff( [[${item.seq}]], [[${date}]] )" th:class="${'div-inline habitDiv' + item.seq}">
+                                <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-habit'}" checked>
+                                <label class="form-check-label" th:id="${item.seq + 'checkbox-habit'}">
+                                    <p class="plan-p checkOn" th:text="${item.scheduleContent}"></p>
+                                </label>
                                 <small th:text="${item.achievedDate}"></small>
-                            </label>
+                            </div>
+                            <button th:onclick="habitDelete( [[${item.seq}]] )" class="edit-btn none-btn">삭제</button>
                         </div>
                     </div>
                 </div>
@@ -54,11 +63,16 @@
                 <div th:each="item : ${content['daily']}">
                     <div th:class="${'dailyPosition' + item.seq}">
                         <div th:if="${not item.status}">
-                            <div class="form-check" th:id="${'daily' + item.seq}" th:onclick="dailyOn( [[${item.seq}]] )">
-                                <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-daily'}">
-                                <label class="form-check-label" th:id="${item.seq + 'checkbox-daily'}">
-                                    <p class="plan-p" th:text="${item.scheduleContent}"></p>
-                                </label>
+                            <div class="form-check" th:id="${'daily' + item.seq}">
+                                <div th:onclick="dailyOn( [[${item.seq}]] )" th:class="${'div-inline dailyDiv' + item.seq}">
+                                    <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-daily'}">
+                                    <label class="form-check-label" th:id="${item.seq + 'checkbox-daily'}">
+                                        <p th:class="${'plan-p contentP dailyP' + item.seq}" th:text="${item.scheduleContent}"></p>
+                                    </label>
+                                </div>
+                                <input th:value="${item.scheduleContent}" th:class="${'modify-input none-btn input' + item.seq}">
+                                <button th:onclick="dailyModify( [[${item.seq}]] )" class="modify-btn none-btn">수정</button>
+                                <button th:onclick="dailyDelete( [[${item.seq}]] )" class="delete-btn none-btn">삭제</button>
                             </div>
                         </div>
                     </div>
@@ -67,11 +81,15 @@
             <div class="dailyCheckOn">
                 <div th:each="item : ${content['daily']}">
                     <div th:if="${item.status}">
-                        <div class="form-check" th:id="${'daily' + item.seq}" th:onclick="dailyOff( [[${item.seq}]] )">
-                            <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-daily'}" checked>
-                            <label class="form-check-label" th:id="${item.seq + 'checkbox-daily'}">
-                                <p class="plan-p checkOn" th:text="${item.scheduleContent}"></p>
-                            </label>
+                        <div class="form-check" th:id="${'daily' + item.seq}">
+                            <div th:onclick="dailyOff( [[${item.seq}]] )" th:class="${'div-inline dailyDiv' + item.seq}">
+                                <input class="form-check-input" type="checkbox" th:id="${item.seq + 'checkbox-daily'}" checked>
+                                <label class="form-check-label" th:id="${item.seq + 'checkbox-daily'}">
+                                    <p class="plan-p checkOn" th:text="${item.scheduleContent}"></p>
+                                </label>
+                                <small th:text="${item.achievedDate}"></small>
+                            </div>
+                            <button th:onclick="dailyDelete( [[${item.seq}]] )" class="delete-btn none-btn">삭제</button>
                         </div>
                     </div>
                 </div>

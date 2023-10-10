@@ -38,7 +38,7 @@ public class ReadScheduleServiceImpl implements ReadScheduleService {
         int[] habitCount = scheduleCalculation.achievedCount(habit, new int[2]);
 
         infoSchedule.setYear(year);
-        infoSchedule.setNowMonth(month);
+        infoSchedule.setNowMonth(String.format("%02d", month));
         infoSchedule.setDailCount(dailCount[0]);
         infoSchedule.setDailAchievedCount(dailCount[1]);
         infoSchedule.setHabitCount(habitCount[0]);

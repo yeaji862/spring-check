@@ -4,7 +4,8 @@ document.querySelector(".dailyInput").addEventListener("keypress", function(even
   if (event.key === "Enter") {
     event.preventDefault();
     var content = document.querySelector(".dailyInput").value;
-    dailyUpload(content, function (result) {
+    dailyUpload(content,date, function (result) {
+        alert(date);
         var seq = result;
         if (seq > 0) {
             var htmlText =  '<div class="dailyPosition'+seq+'">' +

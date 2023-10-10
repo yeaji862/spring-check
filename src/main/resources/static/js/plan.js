@@ -32,7 +32,6 @@ function feedbackInsertAjax(){
 
 function habitOn(seq){
     var date = document.querySelector('.todayDate').value;
-    alert(date);
     habitOnAjax(seq, date);
     scheduleChangeOn(seq, 'habit');
 }
@@ -58,10 +57,12 @@ function scheduleChangeOn(seq, schedule){
     var animatedText = document.getElementById(schedule + seq);
     var checkOnDiv = document.querySelector('.'+ schedule+'CheckOn');
     var checkbox = document.getElementById(seq + 'checkbox-' + schedule);
+    alert(checkOnDiv.innerHTML);
+    alert(checkbox.innerHTML);
     checkbox.checked = true;
     checkOnDiv.appendChild(animatedText);
     animatedText.querySelector('p').classList.add('checkOn');
-    document.getElementById(schedule+seq).setAttribute('onclick', schedule + 'Off('+seq+')');
+    document.querySelector('.'+schedule+'Div'+seq).setAttribute('onclick', schedule + 'Off('+seq+')');
 }
 
 function scheduleChangeOff(seq, schedule){
@@ -72,5 +73,133 @@ function scheduleChangeOff(seq, schedule){
     checkbox.checked = false;
     checkOffDiv.appendChild(animatedText);
     animatedText.querySelector('p').classList.remove('checkOn');
-    document.getElementById(schedule+seq).setAttribute('onclick', schedule + 'On('+seq+')');
+    document.querySelector('.'+schedule+'Div'+seq).setAttribute('onclick', schedule + 'On('+seq+')');
+}
+
+function dailyDelete(seq){
+    dailyContentDelete(seq, function (result) {
+        if (result != null) {
+            document.getElementById('daily' + seq).remove();
+            document.querySelector('.dailyPosition' + seq).remove();
+        }
+    });
+}
+
+function habitDelete(seq){
+    habitContentDelete(seq, function (result) {
+        if (result != null) {
+            document.getElementById('habit' + seq).remove();
+            document.querySelector('.habitPosition' + seq).remove();
+        }
+    });
+}
+
+function editBtn(){
+    var modify = document.querySelectorAll('.modify-btn');
+    var modifyInput = document.querySelectorAll('.modify-input')
+    var contentP = document.querySelectorAll('.contentP');
+    var deleteBtn = document.querySelectorAll('.delete-btn');
+    document.querySelector('.editButton').textContent = '완료';
+    document.querySelector('.editButton').setAttribute('onclick', 'modifyDone()');
+
+         modify.forEach(element => {
+            element.classList.remove('none-btn');
+          });
+         modifyInput.forEach(element => {
+            element.classList.remove('none-btn');
+          });
+         contentP.forEach(element => {
+            element.style.display = 'none';
+          });
+         deleteBtn.forEach(element => {
+            element.classList.remove('none-btn');
+          });
+}
+
+function modifyDone(){
+    var modify = document.querySelectorAll('.modify-btn');
+    var modifyInput = document.querySelectorAll('.modify-input')
+    var contentP = document.querySelectorAll('.contentP');
+    var deleteBtn = document.querySelectorAll('.delete-btn');
+    document.querySelector('.editButton').textContent = '편집';
+    document.querySelector('.editButton').setAttribute('onclick', 'editBtn()');
+
+         modify.forEach(element => {
+            element.classList.add('none-btn');
+          });
+         modifyInput.forEach(element => {
+            element.classList.add('none-btn');
+          });
+         contentP.forEach(element => {
+            element.style.display = 'block';
+          });
+         deleteBtn.forEach(element => {
+            element.classList.add('none-btn');
+          });
+}
+
+function dailyModify(seq){
+    var content = document.querySelector('.daily-input' + seq).value;
+     dailyContentEdit(seq, content, function (result) {
+            if (result) {
+                document.querySelector('.dailyP'+ seq).textContent = content;
+                alert('수정이 완료되었습니다!');
+            }
+        });
+}
+
+function habitModify(seq){
+    var content = document.querySelector('.habit-input' + seq).value;
+     habitContentEdit(seq, content, function (result) {
+            if (result) {
+                document.querySelector('.habitP'+ seq).textContent = content;
+                alert('수정이 완료되었습니다!');
+            }
+        });
+}
+
+function beforeDate(dateString){
+    var date = subMonth(dateString);
+
+    window.location.href="/check?date=" + date;
+}
+
+function afterDate(dateString){
+    var date = addMonth(dateString);
+
+    window.location.href="/check?date=" + date;
+}
+
+function mobileBeforeDate(dateString){
+    var date = subMonth(dateString);
+
+    window.location.href="/check/infoMobile/?date=" + date;
+}
+
+function mobileAfterDate(dateString){
+    var date = addMonth(dateString);
+
+    window.location.href="/check/infoMobile/?date=" + date;
+}
+
+function subMonth(dateString){
+  var date = new Date(dateString);
+
+  date.setMonth(date.getMonth() - 1);
+
+  var year = date.getFullYear();
+  var month = (date.getMonth() + 1).toString().padStart(2, '0');
+
+  return year + '.' + month + '.01'
+}
+
+function addMonth(dateString){
+  var date = new Date(dateString);
+
+  date.setMonth(date.getMonth() + 1);
+
+  var year = date.getFullYear();
+  var month = (date.getMonth() + 1).toString().padStart(2, '0');
+
+  return year + '.' + month + '.01'
 }

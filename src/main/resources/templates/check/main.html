@@ -20,11 +20,12 @@
             <input type="hidden" th:value="${date}" class="todayDate">
 
             <input type="text" class="plan-input dailyInput" placeholder="일정을 작성해주세요. Enter창을 누르면 업로드 됩니다!">
-
+            <p th:text="${date}"></p>
                 <div style="margin-bottom: 3%;">
                     <small>고정</small>
                     <img th:src="@{/img/fix.png}" style="width: 3%;">
                 </div>
+            <button onclick="editBtn()" class="editButton">편집</button>
             <th:block th:replace="check/fragment/habitContent.html :: HabitContent"></th:block>
             <hr>
             <th:block th:replace="check/fragment/dailyContent.html :: DailyContent"></th:block>
