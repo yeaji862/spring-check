@@ -62,14 +62,16 @@ public class ScheduleCalculation {
         log.info("ScheduleCalculation.achievedPercent()");
         int percent = 0;
         try{
-            percent = ((dail[0] + habit[0]) / (dail[1] + habit[1])) * 100;
+            dail[0] = (dail[0] == 0 && dail[1] == 0) ? 0 : dail[0]/dail[1]*50;
+            habit[0] = (habit[0] == 0 && habit[1] == 0) ? 0 : habit[0]/habit[1]*50;
+            percent = dail[0] + habit[0]/habit[1];
         }catch (ArithmeticException e){
             log.error(e.getMessage());
         }
         return percent;
     }
 
-    private int getActualMaximum(int year, int month){
+    public int getActualMaximum(int year, int month){
         log.info("ScheduleCalculation.getActualMaximum()");
         Calendar instance = Calendar.getInstance();
         instance.set(year, month-1, 1);

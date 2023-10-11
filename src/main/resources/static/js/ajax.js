@@ -251,3 +251,22 @@ function habitContentEdit(seq, content, callback){
     }
   });
 }
+
+function imgEdit(seq, content, callback){
+  $.ajax({
+    url: "/check/rest/habit/status",
+    method: "POST",
+    data: {"division" : "edit", "seq" : seq, "content" : content},
+    dataType: "text",
+    success: function (data) {
+      if (data > 0) {
+        callback(true);
+      }else{
+        alert('다시 시도해주세요!');
+      }
+    },
+    error: function (request, status, error) {
+      alert('다시 시도해주세요!');
+    }
+  });
+}

@@ -5,11 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import spring.check.user.dto.Members;
 import spring.check.user.service.UserServiceImpl;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 
 @Slf4j
 @Controller
@@ -75,11 +78,15 @@ public class UserController {
         session.removeAttribute("userNum");
         return "index";
     }
-    
+
     @ResponseBody
-    @PostMapping("/{userNum}/img")
-    public String userImgEdit(@ModelAttribute Members members){
-        return (userService.editImg(members) == 1) ? "성공" : "실패";
+    @PostMapping("/img")
+    public String userImgEdit(@RequestParam MultipartFile resizedImage, HttpSession session) throws IOException {
+        int userNum = (int) session.getAttribute("userNum");
+        if(userService.editImg(userNum, resizedImage) > 0 ) {
+            session.setAttribute("userImg", resizedImage.getBytes());
+            return "ok";
+        }else return "";
     }
 
     @ResponseBody

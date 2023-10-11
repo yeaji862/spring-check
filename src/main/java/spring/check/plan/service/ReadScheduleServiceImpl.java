@@ -41,7 +41,7 @@ public class ReadScheduleServiceImpl implements ReadScheduleService {
         infoSchedule.setNowMonth(String.format("%02d", month));
         infoSchedule.setDailCount(dailCount[0]);
         infoSchedule.setDailAchievedCount(dailCount[1]);
-        infoSchedule.setHabitCount(habitCount[0]);
+        infoSchedule.setHabitCount(scheduleCalculation.getActualMaximum(year,month)); // 해당 달의 마지막 day 를 저장해준다
         infoSchedule.setHabitAchievedCount(habitCount[1]);
         infoSchedule.setCalender(scheduleCalculation.setCalendar(dail, habit, new LinkedHashMap<>(), year, month));
         infoSchedule.setAchievedPercent(scheduleCalculation.achievedPercent(dailCount, habitCount));

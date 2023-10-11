@@ -3,10 +3,15 @@ package spring.check.user.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import spring.check.editPassLink.repository.EditPassLinkMapper;
 import spring.check.user.dto.Members;
 import spring.check.user.UserPassEncoder;
 import spring.check.user.repository.UserMapper;
+
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 @Service
 @Slf4j
@@ -40,9 +45,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int editImg(Members members) {
+    public int editImg(int userNum, MultipartFile file) {
         log.info("UserServiceImpl editImg()");
-        return mapper.editImg(members);
+            try {
+                if(!file.isEmpty()) return mapper.editImg(userNum, file.getBytes());
+            } catch (IOException e) {
+                log.error(e.getMessage());
+            }
+
+        return 0;
     }
 
     @Override

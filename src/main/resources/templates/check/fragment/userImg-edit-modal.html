@@ -16,19 +16,20 @@
       <div class="modal-body">
         <div style="text-align: center;">
           <div id="image_container">
-            <img th:src="@{/img/profile.png}" id="before-img" class="modal-img">
+            <img th:src="@{/img/profile.png}" id="beforeImg" class="modal-img">
           </div>
           <label for="file">
             <p class="edit-p">편집</p>
           </label>
-          <input type="file" id="file" accept="image/*" onchange="setThumbnail(event);" style="display: none;"/> <br>
-          <button type="button" class="btn btn-secondary">&nbsp;이미지 수정&nbsp;</button>
+          <input name="userImg" type="file" id="file" onchange="setThumbnail(event);" accept="image/*" style="display: none;"/> <br>
+          <button class="btn btn-secondary" onclick="resizeAndSubmit()">&nbsp;이미지 수정&nbsp;</button>
+            <canvas id="resizedCanvas" style="display: none;"></canvas>
           <script>
                     function setThumbnail(event) {
                         var reader = new FileReader();
 
                         reader.onload = function(event) {
-                            var imgElement = document.getElementById("before-img");
+                            var imgElement = document.getElementById("beforeImg");
                             var newImageSrc = event.target.result;
                             imgElement.src = newImageSrc;
                         };
@@ -36,10 +37,11 @@
                         reader.readAsDataURL(event.target.files[0]);
                     }
                 </script>
+          <script type="text/javascript" src="/js/submit.js" ></script>
         </div>
       </div>
     </div>
   </div>
 
-
+</div>
 </html>

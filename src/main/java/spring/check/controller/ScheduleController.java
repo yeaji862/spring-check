@@ -10,6 +10,7 @@ import spring.check.plan.service.FeedBackServiceImpl;
 import spring.check.plan.service.ReadScheduleServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.util.Base64;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,6 +29,8 @@ public class ScheduleController {
         model.addAttribute("content", readScheduleService.content(userNum, date));
         model.addAttribute("feedback" , feedBack);
         model.addAttribute("date", date);
+        model.addAttribute("planLink", "true");
+        model.addAttribute("userImg", Base64.getEncoder().encodeToString((byte[]) session.getAttribute("userImg")));
         return "check/main";
     }
 
@@ -39,6 +42,7 @@ public class ScheduleController {
         model.addAttribute("content", readScheduleService.content(userNum, date));
         model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
         model.addAttribute("date", date);
+        model.addAttribute("habitLink", "true");
         return "check/habit_main";
     }
 
@@ -50,6 +54,7 @@ public class ScheduleController {
         model.addAttribute("content", readScheduleService.content(userNum, date));
         model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
         model.addAttribute("date", date);
+        model.addAttribute("historyLink", "true");
         return "check/plan_history";
     }
 
@@ -61,6 +66,7 @@ public class ScheduleController {
         model.addAttribute("content", readScheduleService.content(userNum, date));
         model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
         model.addAttribute("date", date);
+        model.addAttribute("planLink", "true");
         return "check/main";
     }
 

@@ -5,15 +5,18 @@
 
 <div class="web-drop">
     <div class="dropdown">
-        <img th:src="@{/img/empty.png}" class="barProfile-img" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img th:src="'data:image/jpeg;base64,' + ${userImg}" class="barProfile-img" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">이미지 변경</a></li>
             <li><a class="dropdown-item" href="/user/logout" style="color: #b5b5b5;">로그아웃</a></li>
         </ul>
     </div>
-    <img th:src="@{/img/plan.png}" class="bar-img" onclick="planLink()"> <br>
-    <img th:src="@{/img/habitN.png}" class="bar-img" onclick="habitLink()"> <br>
-    <img th:src="@{/img/historyN.png}" class="bar-img" onclick="historyLink()">
+    <img th:if="${planLink} != null" th:src="@{/img/plan.png}" class="bar-img" onclick="planLink()">
+    <img th:if="${planLink} == null" th:src="@{/img/planN.png}" class="bar-img" onclick="planLink()"> <br>
+    <img th:if="${habitLink} != null" th:src="@{/img/habit.png}" class="bar-img" onclick="habitLink()">
+    <img th:if="${habitLink} == null" th:src="@{/img/habitN.png}" class="bar-img" onclick="habitLink()"> <br>
+    <img th:if="${historyLink} != null" th:src="@{/img/history.png}" class="bar-img" onclick="historyLink()">
+    <img th:if="${historyLink} == null" th:src="@{/img/historyN.png}" class="bar-img" onclick="historyLink()">
 </div>
 
 <div class="dropdown mobile-drop">

@@ -13,7 +13,7 @@ public class Members {
     private int userNum;
     private String userMail;
     private String userPass;
-    private String userImg;
+    private byte[] userImg;
     private Date createDate;
     private String division;
 }

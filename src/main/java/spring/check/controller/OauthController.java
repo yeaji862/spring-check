@@ -13,6 +13,7 @@ import spring.check.user.dto.Members;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 
 @Controller
 @RequiredArgsConstructor
@@ -40,6 +41,7 @@ public class OauthController {
             if(members != null){
                 session.setAttribute("userNum" , members.getUserNum());
                 session.setAttribute("userMail" , members.getUserMail());
+                session.setAttribute("userImg", members.getUserImg());
                 return "redirect:http://localhost:8080/check?date=" +
                         LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
             }
