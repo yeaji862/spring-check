@@ -58,7 +58,7 @@ public class ScheduleRestController {
     }
 
     @PostMapping("/feedback")
-    int feedBack(@RequestParam String division, @RequestParam String createDate, @RequestParam String content, HttpSession session){
+    int feedBack(@RequestParam String division, @RequestParam(required = false) String createDate, @RequestParam String content, HttpSession session){
         int userNum = (int) session.getAttribute("userNum");
         return feedBackService.feedBack(division, userNum, createDate, content);
     }

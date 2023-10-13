@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Base64;
 
 @Slf4j
 @Controller
@@ -29,7 +28,6 @@ public class UserController {
             Members signInMember = userService.signIn(members);
             session.setAttribute("userMail" , signInMember.getUserMail());
             session.setAttribute("userNum" , signInMember.getUserNum());
-            model.addAttribute("status", "success");
             return "redirect:http://localhost:8080/check?date=" +
                     LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         }else{

@@ -42,13 +42,17 @@
 
 <div th:if="${feedback} != null">
   <small th:text="${infoSchedule.nowMonth + '월 일지'}"></small>
+  <button th:onclick="feedbackUpdate( [[${feedback.createDate}]] )" class="feedback-button">
+    업로드
+  </button>
   <textarea type="text" class="feedback-textarea" th:text="${feedback.fbContent}"></textarea>
-  <small th:text="${feedback.modifyDate}"></small>
-  <p th:onclick="feedbackUpdate( [[${feedback.createDate}]] )">update</p>
+  <small th:if="${feedback.modifyDate} != null" th:text="${'수정됨 ' + feedback.modifyDate}" class="feedback-small"></small>
 </div>
 <div th:if="${feedback} == null">
   <small th:text="${infoSchedule.nowMonth + '월 일지'}"></small>
-  <textarea type="text" class="feedback-textarea"></textarea>
-  <p onclick="feedbackInsert()">insert</p>
+  <button onclick="feedbackInsert()" class="feedback-button">
+    업로드
+  </button>
+  <textarea type="text" class="feedback-textarea" ></textarea>
 </div>
 </html>

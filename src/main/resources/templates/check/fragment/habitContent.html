@@ -14,9 +14,9 @@
                         <p th:class="${'plan-p contentP habitP' + item.seq}" th:text="${item.scheduleContent}"></p>
                     </label>
                     </div>
-                    <input th:value="${item.scheduleContent}" th:class="${'modify-input none-btn habit-input' + item.seq}">
-                    <button th:onclick="habitModify( [[${item.seq}]] )" class="modify-btn none-btn">수정</button>
-                    <button th:onclick="habitDelete( [[${item.seq}]] )" class="delete-btn none-btn">삭제</button>
+                    <input th:value="${item.scheduleContent}" th:class="${'edit-input-css modify-input none-btn habit-input' + item.seq}">
+                    <button th:onclick="habitModify( [[${item.seq}]] )" class="modify-btn none-btn edit-button-css">수정</button>&nbsp
+                    <button th:onclick="habitDelete( [[${item.seq}]] )" class="delete-btn none-btn edit-button-css">삭제</button>
                 </div>
             </div>
         </div>
@@ -33,9 +33,9 @@
                     <p th:class="${'checkOn plan-p contentP habitP' + item.seq}" th:text="${item.scheduleContent}"></p>
                 </label>
                 </div>
-                <input th:value="${item.scheduleContent}" th:class="${'modify-input none-btn habit-input' + item.seq}">
-                <button th:onclick="habitModify( [[${item.seq}]] )" class="modify-btn none-btn">수정</button>
-                <button th:onclick="habitDelete( [[${item.seq}]] )" class="delete-btn none-btn">삭제</button>
+                <input th:value="${item.scheduleContent}" th:class="${'edit-input-css modify-input none-btn habit-input' + item.seq}">
+                <button th:onclick="habitModify( [[${item.seq}]] )" class="modify-btn none-btn edit-button-css">수정</button>&nbsp
+                <button th:onclick="habitDelete( [[${item.seq}]] )" class="delete-btn none-btn edit-button-css">삭제</button>
             </div>
         </div>
     </div>

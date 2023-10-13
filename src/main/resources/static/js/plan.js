@@ -25,9 +25,9 @@ function feedbackUpdate(createDate){
     feedbackUpdateAjax(date, textareaValue);
 }
 
-function feedbackInsertAjax(){
+function feedbackInsert(){
     var textareaValue = document.querySelector('.feedback-textarea').value;
-    feedInsert(textareaValue);
+    feedbackInsertAjax(textareaValue);
 }
 
 function habitOn(seq){
@@ -57,9 +57,8 @@ function scheduleChangeOn(seq, schedule){
     var animatedText = document.getElementById(schedule + seq);
     var checkOnDiv = document.querySelector('.'+ schedule+'CheckOn');
     var checkbox = document.getElementById(seq + 'checkbox-' + schedule);
-    alert(checkOnDiv.innerHTML);
-    alert(checkbox.innerHTML);
     checkbox.checked = true;
+    checkOnDiv.classList.contains("history-date");
     checkOnDiv.appendChild(animatedText);
     animatedText.querySelector('p').classList.add('checkOn');
     document.querySelector('.'+schedule+'Div'+seq).setAttribute('onclick', schedule + 'Off('+seq+')');
@@ -71,6 +70,7 @@ function scheduleChangeOff(seq, schedule){
     var checkOffDiv = document.querySelector('.'+ schedule+'Position' + seq);
     var checkbox = document.getElementById(seq + 'checkbox-' + schedule);
     checkbox.checked = false;
+    checkOffDiv.classList.contains("history-date");
     checkOffDiv.appendChild(animatedText);
     animatedText.querySelector('p').classList.remove('checkOn');
     document.querySelector('.'+schedule+'Div'+seq).setAttribute('onclick', schedule + 'On('+seq+')');

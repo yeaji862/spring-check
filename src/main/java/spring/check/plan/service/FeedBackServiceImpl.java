@@ -23,6 +23,6 @@ public class FeedBackServiceImpl implements FeedBackService {
         log.info("FeedBackServiceImpl.feedBack()");
         return (division.equals("edit")) ?
                 feedBackMapper.editFeedBack(userNum, Integer.valueOf(createDate.substring(5,7)), Integer.valueOf(createDate.substring(0,4)), content) :
-                feedBackMapper.uploadFeedBack(userNum, createDate, content);
+                feedBackMapper.uploadFeedBack(userNum, content);
     }
 }

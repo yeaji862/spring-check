@@ -30,7 +30,6 @@ public class ScheduleController {
         model.addAttribute("feedback" , feedBack);
         model.addAttribute("date", date);
         model.addAttribute("planLink", "true");
-        model.addAttribute("userImg", Base64.getEncoder().encodeToString((byte[]) session.getAttribute("userImg")));
         return "check/main";
     }
 
