@@ -8,9 +8,9 @@ import spring.check.plan.dto.FeedBack;
 import spring.check.plan.dto.InfoSchedule;
 import spring.check.plan.service.FeedBackServiceImpl;
 import spring.check.plan.service.ReadScheduleServiceImpl;
+import spring.check.plan.service.UpdatePlanServiceImpl;
 
 import javax.servlet.http.HttpSession;
-import java.util.Base64;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,6 +18,7 @@ import java.util.Base64;
 public class ScheduleController {
 
     private final ReadScheduleServiceImpl readScheduleService;
+    private final UpdatePlanServiceImpl updatePlanService;
     private final FeedBackServiceImpl feedBackService;
 
     @GetMapping
@@ -79,6 +80,22 @@ public class ScheduleController {
         model.addAttribute("date", date);
         model.addAttribute("mobile", "mobile");
         return "check/info-mobile";
+    }
+
+    @GetMapping("/daily/{seq}")
+    String achievedDaily(@RequestParam String division,
+                         @PathVariable int seq,
+                         @RequestParam String date){
+            updatePlanService.achievedDaily(division, seq);
+            return "redirect:/check/history?date="+date;
+    }
+
+    @GetMapping("/habit/{seq}")
+    String achievedHabit(@RequestParam String division,
+                        @PathVariable int seq,
+                        @RequestParam String date){
+        updatePlanService.achievedHabit(division, seq, date);
+        return "redirect:/check/history?date="+date;
     }
 }
 

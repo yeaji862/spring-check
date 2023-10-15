@@ -22,13 +22,14 @@
             <input type="text" class="plan-input dailyInput" placeholder="일정을 작성해주세요. Enter창을 누르면 업로드 됩니다!">
             <p th:text="${'today '+date}" class="date-p"></p>
             <button onclick="editBtn()" class="editButton edit-button-css">편집</button>
-                <div style="margin-bottom: 3%;">
+                <div style="margin-bottom: 3%;" th:if="${#lists.size(content['habit'])} != 0">
                     <small>고정</small>
-                    <img th:src="@{/img/fix.png}" style="width: 3%;">
+                    <img th:src="@{/img/fix.png}" class="fixImg">
                 </div>
             <th:block th:replace="check/fragment/habitContent.html :: HabitContent"></th:block>
-            <hr>
+            <hr th:if="${#lists.size(content['habit'])} != 0">
             <th:block th:replace="check/fragment/dailyContent.html :: DailyContent"></th:block>
+            <img th:if="${#lists.size(content['daily'])} == 0 and ${#lists.size(content['habit'])} == 0" th:src="@{/img/day-dreaming-4.png}" class="noneImg-css">
         </div>
 
         <div class="col-md-5 productivity" style="padding-left: 3%;">

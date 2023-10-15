@@ -95,6 +95,7 @@ function habitDelete(seq){
 }
 
 function editBtn(){
+    var history = document.querySelectorAll('.history-date');
     var modify = document.querySelectorAll('.modify-btn');
     var modifyInput = document.querySelectorAll('.modify-input')
     var contentP = document.querySelectorAll('.contentP');
@@ -114,9 +115,13 @@ function editBtn(){
          deleteBtn.forEach(element => {
             element.classList.remove('none-btn');
           });
+         history.forEach(element => {
+            element.style.display = ('none');
+          });
 }
 
 function modifyDone(){
+    var history = document.querySelectorAll('.history-date');
     var modify = document.querySelectorAll('.modify-btn');
     var modifyInput = document.querySelectorAll('.modify-input')
     var contentP = document.querySelectorAll('.contentP');
@@ -135,6 +140,9 @@ function modifyDone(){
           });
          deleteBtn.forEach(element => {
             element.classList.add('none-btn');
+          });
+         history.forEach(element => {
+            element.style.display = ('inline-block');
           });
 }
 

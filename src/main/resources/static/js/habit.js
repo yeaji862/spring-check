@@ -1,6 +1,7 @@
 document.querySelector(".habitInput").addEventListener("keypress", function(event) {
   var habitDiv = document.querySelector('.habitCheck');
   var date = document.querySelector('.todayDate').value;
+  var noneImg = document.querySelector('.noneImg-css');
   if (event.key === "Enter") {
     event.preventDefault();
     var content = document.querySelector(".habitInput").value;
@@ -15,6 +16,9 @@ document.querySelector(".habitInput").addEventListener("keypress", function(even
                             '</label></div></div>';
             habitDiv.innerHTML += htmlText;
             content = '';
+            if(noneImg != null){
+                            noneImg.remove();
+                        }
         }
         });
   }

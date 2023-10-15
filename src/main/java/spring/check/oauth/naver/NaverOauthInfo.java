@@ -7,8 +7,6 @@ import spring.check.oauth.dto.OauthInfo;
 @Component
 public class NaverOauthInfo implements OauthInfo {
 
-    @Value("${naver.auth.url}")
-    private String url;
     @Value("${naver.userInfo.url}")
     private String userInfoUrl;
     @Value("${naver.redirect.url}")

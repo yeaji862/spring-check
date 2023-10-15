@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       th:fragment="Info">
 
-<div class="date-div">
+<div>
   <img th:if="${mobile} == null" th:src="@{/img/leftN.png}" class="arrow-img" th:onclick="beforeDate( [[${infoSchedule.year + '.' + infoSchedule.nowMonth}]] )">
   <img th:if="${mobile} != null" th:src="@{/img/leftN.png}" class="arrow-img" th:onclick="mobileBeforeDate( [[${infoSchedule.year + '.' + infoSchedule.nowMonth}]] )">
   <h3 class="date-h" th:text="${infoSchedule.year + '.' + infoSchedule.nowMonth}"></h3>
@@ -11,7 +11,27 @@
   <img th:if="${mobile} != null" th:src="@{/img/rigthN.png}" class="arrow-img" th:onclick="mobileAfterDate( [[${infoSchedule.year + '.' + infoSchedule.nowMonth}]] )">
 </div>
 <div class="calendar">
-
+  <div class="icon-check calender-div-css">
+    <span style="color: #dc3545;">일</span>
+  </div>
+  <div class="icon-check calender-div-css">
+    <span>월</span>
+  </div>
+  <div class="icon-check calender-div-css">
+    <span>화</span>
+  </div>
+  <div class="icon-check calender-div-css">
+    <span>수</span>
+  </div>
+  <div class="icon-check calender-div-css">
+    <span>목</span>
+  </div>
+  <div class="icon-check calender-div-css">
+    <span>금</span>
+  </div>
+  <div class="icon-check calender-div-css">
+    <span style="color: #25588f;">토</span>
+  </div><br>
   <div th:each="entry, calender : ${infoSchedule.calender}" style="display:inline;">
 
     <div class="icon-check">

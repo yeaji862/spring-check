@@ -7,8 +7,6 @@ import spring.check.oauth.dto.OauthInfo;
 @Component
 public class KakaoOauthInfo implements OauthInfo {
 
-    @Value("${kakao.auth.url}")
-    private String url;
     @Value("${kakao.userInfo.url}")
     private String userInfoUrl;
     @Value("${kakao.redirect.url}")

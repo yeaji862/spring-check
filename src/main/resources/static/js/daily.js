@@ -1,6 +1,7 @@
 document.querySelector(".dailyInput").addEventListener("keypress", function(event) {
   var dailyDiv = document.querySelector('.dailyCheck');
   var date = document.querySelector('.todayDate').value;
+  var noneImg = document.querySelector('.noneImg-css');
   if (event.key === "Enter") {
     event.preventDefault();
     var content = document.querySelector(".dailyInput").value;
@@ -15,6 +16,9 @@ document.querySelector(".dailyInput").addEventListener("keypress", function(even
                             '</label></div></div>';
             dailyDiv.innerHTML += htmlText;
             content = '';
+            if(noneImg != null){
+                noneImg.remove();
+            }
         }
     });
   }

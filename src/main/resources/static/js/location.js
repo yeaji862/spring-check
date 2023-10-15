@@ -20,7 +20,12 @@ function findPass(){
 
 function refresh(){
     var currentDate = today();
-    window.location.href="/check/refresh/?date=" + currentDate;
+    window.location.href="/check/refresh?date=" + currentDate;
+}
+
+function todayLink(){
+    var currentDate = yesterday();
+    window.location.href="/check/?date=" + currentDate;
 }
 
 function planLink(date){
@@ -45,16 +50,32 @@ function planLink(date){
 
 function habitLink(){
     var currentDate = today();
-    window.location.href="/check/habit/?date=" + currentDate;
+    window.location.href="/check/habit?date=" + currentDate;
 }
 
 function historyLink(){
     var currentDate = yesterday();
-    window.location.href="/check/history/?date=" + currentDate;
+    window.location.href="/check/history?date=" + currentDate;
 }
 
 function infoMobile(){
     var currentDate = yesterday();
-    window.location.href="/check/infoMobile/?date=" + currentDate;
+    window.location.href="/check/infoMobile?date=" + currentDate;
+}
+
+function historyHabitOn(seq, date){
+    window.location.href="/check/habit/"+seq+"?division=on&&date=" + date;
+}
+
+function historyHabitOff(seq, date){
+    window.location.href="/check/habit/"+seq+"?division=off&&date=" + date;
+}
+
+function historyDailyOn(seq, date){
+    window.location.href="/check/daily/"+seq+"?division=on&&date=" + date;
+}
+
+function historyDailyOff(seq, date){
+    window.location.href="/check/daily/"+seq+"?division=off&&date=" + date;
 }
 

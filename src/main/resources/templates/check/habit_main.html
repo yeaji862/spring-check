@@ -25,7 +25,7 @@
             <p th:text="${'today '+date}" class="date-p"></p>
             <button onclick="editBtn()" class="editButton edit-button-css">편집</button>
             <th:block th:replace="check/fragment/habitContent.html :: HabitContent"></th:block>
-
+            <img th:if="${#lists.size(content['habit'])} == 0" th:src="@{/img/day-dreaming-4.png}" class="noneImg-css">
         </div>
 
         <div class="col-md-5 productivity" style="padding-left: 3%;">

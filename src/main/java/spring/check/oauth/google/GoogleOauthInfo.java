@@ -7,8 +7,6 @@ import spring.check.oauth.dto.OauthInfo;
 @Component
 public class GoogleOauthInfo implements OauthInfo{
 
-    @Value("${google.auth.url}")
-    private String url;
     @Value("${google.userInfo.url}")
     private String userInfoUrl;
     @Value("${google.redirect.url}")
@@ -28,7 +26,8 @@ public class GoogleOauthInfo implements OauthInfo{
         return "https://accounts.google.com/o/oauth2/v2/auth?" +
                 "client_id=" + clientId +
                 "&&redirect_uri=" + redirectUrl +
-                "&&scope=profile,email&&access_type=offline&&response_type=code";
+                "&response_type=code&access_type=offline" +
+                "&scope=https://www.googleapis.com/auth/userinfo.email&&https://www.googleapis.com/auth/userinfo.profile";
     }
     @Override
     public String tokenReqUrl(){
