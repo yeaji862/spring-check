@@ -78,7 +78,7 @@ alert(seq);
     dataType: "text",
     success: function (data) {
       if (data > 0) {
-        alert('성공');
+           console.log('ok');
       }
     },
     error: function (request, status, error) {
@@ -95,7 +95,7 @@ function habitOffAjax(seq, date){
     dataType: "text",
     success: function (data) {
       if (data > 0) {
-        alert('성공');
+      console.log('ok');
       }
     },
     error: function (request, status, error) {
@@ -112,7 +112,7 @@ function dailyOnAjax(seq){
     dataType: "text",
     success: function (data) {
       if (data > 0) {
-        alert('성공');
+        console.log('ok');
       }
     },
     error: function (request, status, error) {
@@ -129,7 +129,7 @@ function dailyOffAjax(seq){
     dataType: "text",
     success: function (data) {
       if (data > 0) {
-        alert('성공');
+        console.log('ok');
       }
     },
     error: function (request, status, error) {
@@ -157,11 +157,11 @@ function dailyUpload(content, date, callback){
   });
 }
 
-function habitUpload(content, callback){
+function habitUpload(content, date,callback){
   $.ajax({
     url: "/check/rest/habit/status",
     method: "POST",
-    data: {"division" : "upload", "content" : content},
+    data: {"division" : "upload", "content" : content, "date" : date},
     dataType: "text",
     success: function (data) {
       if (data > 0) {

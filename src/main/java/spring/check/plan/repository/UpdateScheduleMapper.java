@@ -11,8 +11,8 @@ public interface UpdateScheduleMapper {
     @Select("select * from daily_content_insert(#{userNum} , #{content}, #{date})")
     int uploadDaily(@Param("userNum") int userNum, @Param("content") String content, @Param("date") LocalDate date);
 
-    @Select("select * from habit_content_insert(#{userNum} , #{content})")
-    int uploadHabit(@Param("userNum") int userNum, @Param("content") String content);
+    @Select("select * from habit_content_insert(#{userNum} , #{content}, #{date})")
+    int uploadHabit(@Param("userNum") int userNum, @Param("content") String content, @Param("date") LocalDate date);
 
     @Update("update daily_content set \"scheduleContent\" = #{content} where seq = #{seq}")
     int editDaily(@Param("seq") int seq, @Param("content") String content);

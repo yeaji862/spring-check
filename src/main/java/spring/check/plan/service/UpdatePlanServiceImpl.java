@@ -33,11 +33,11 @@ public class UpdatePlanServiceImpl implements UpdatePlanService{
     }
 
     @Override
-    public int habit(String division, Optional<Integer> seq, int userNum, Optional<String> content) {
+    public int habit(String division, Optional<Integer> seq, int userNum, Optional<String> content, Optional<String> date) {
         int num = 0;
         switch (division){
             case "upload" :
-                num = updateScheduleMapper.uploadHabit(userNum, content.orElse("")); break;
+                num = updateScheduleMapper.uploadHabit(userNum, content.orElse(""), LocalDate.parse(date.orElse(""), DateTimeFormatter.ofPattern("yyyy.MM.dd"))); break;
             case "edit" :
                 num = updateScheduleMapper.editHabit(seq.orElse(0), content.orElse("")); break;
             case "delete" :

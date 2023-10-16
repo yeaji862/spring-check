@@ -20,7 +20,6 @@ public class UserTest {
         Members members1 = new Members();
         members1.setUserMail("test");
         members1.setUserPass("1111");
-        members1.setUserImg("testImg");
         int num = service.signUp(members1);
 
         Assertions.assertThat(num).isEqualTo(1);

@@ -12,23 +12,23 @@
             <li><a class="dropdown-item" href="/user/logout" style="color: #b5b5b5;">로그아웃</a></li>
         </ul>
     </div>
-    <img th:if="${planLink} != null" th:src="@{/img/plan.png}" class="bar-img" onclick="planLink()">
-    <img th:if="${planLink} == null" th:src="@{/img/planN.png}" class="bar-img" onclick="planLink()"> <br>
-    <img th:if="${habitLink} != null" th:src="@{/img/habit.png}" class="bar-img" onclick="habitLink()">
-    <img th:if="${habitLink} == null" th:src="@{/img/habitN.png}" class="bar-img" onclick="habitLink()"> <br>
-    <img th:if="${historyLink} != null" th:src="@{/img/history.png}" class="bar-img" onclick="historyLink()">
-    <img th:if="${historyLink} == null" th:src="@{/img/historyN.png}" class="bar-img" onclick="historyLink()">
+    <img th:if="${planLink} != null" th:src="@{/img/plan.png}" class="bar-img" onclick="todayLink()">
+    <img th:if="${planLink} == null" th:src="@{/img/planN.png}" class="bar-img" onclick="todayLink()"> <br>
+    <img th:if="${habitLink} != null" th:src="@{/img/habit.png}" class="bar-img" th:onclick="habitLink([[${date}]])">
+    <img th:if="${habitLink} == null" th:src="@{/img/habitN.png}" class="bar-img" th:onclick="habitLink([[${date}]])"> <br>
+    <img th:if="${historyLink} != null" th:src="@{/img/history.png}" class="bar-img" th:onclick="historyLink([[${date}]])">
+    <img th:if="${historyLink} == null" th:src="@{/img/historyN.png}" class="bar-img" th:onclick="historyLink([[${date}]])">
 </div>
 
 <div class="dropdown mobile-drop">
     <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     </button>
-    <span class="span-text">check</span>
+    <span class="span-text" onclick="todayLink()">check</span>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" onclick="planLink()">할 일</a></li>
-        <li><a class="dropdown-item" onclick="habitLink()">습관</a></li>
-        <li><a class="dropdown-item" onclick="infoMobile()">생산성</a></li>
-        <li><a class="dropdown-item" onclick="historyLink()">히스토리</a></li>
+        <li><a class="dropdown-item" onclick="todayLink()">할 일</a></li>
+        <li><a class="dropdown-item" th:onclick="habitLink([[${date}]])">습관</a></li>
+        <li><a class="dropdown-item" th:onclick="infoMobile([[${date}]])">생산성</a></li>
+        <li><a class="dropdown-item" th:onclick="historyLink([[${date}]])">히스토리</a></li>
         <li><a class="dropdown-item" href="/user/logout" style="color: #b5b5b5;">로그아웃</a></li>
     </ul>
 </div>

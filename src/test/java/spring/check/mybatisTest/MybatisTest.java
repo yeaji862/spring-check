@@ -11,7 +11,7 @@ public class MybatisTest{
     MapperTest mapperTest;
     @Test
     public void dataTest() {
-        Assertions.assertThat(mapperTest.dataTest()).isEqualTo(5);
+        Assertions.assertThat(mapperTest.dataTest()).isEqualTo(8);
     }
 }
 

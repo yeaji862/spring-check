@@ -44,12 +44,12 @@ public class OauthController {
                 if(members.getUserImg() != null){
                     session.setAttribute("userImg", Base64.getEncoder().encodeToString(members.getUserImg()));
                 }
-                return "redirect:http://localhost:8080/check?date=" +
+                return "redirect:/check/view?date=" +
                         LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
             }
 
         }
 
-        return "redirect:http://localhost:8080";
+        return "redirect:/";
     }
 }

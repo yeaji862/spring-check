@@ -9,8 +9,6 @@ import java.util.List;
 public interface ReadScheduleService {
 
     InfoSchedule infoSchedule(int userNum, String date);
-    List<Schedule> dailyListByDate(int userNum, String date);
-    List<Schedule> habitListByDate(int userNum, String date);
     HashMap<String, Object> content(int userNum, String date);
 
 }

@@ -27,6 +27,7 @@ public class Oauth2UserService{
         if(members == null){
             members = setMembers(userMail, division);
             members.setUserNum(mapper.signIn(setMembers(userMail, division)));
+            members = mapper.findId(userMail, division);
         }
 
         return members;

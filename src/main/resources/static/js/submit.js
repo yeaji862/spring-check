@@ -102,7 +102,7 @@ function resizeAndSubmit() {
                 })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href="/check?date=" + today();
+                        window.location.href="/check/view?date=" + today();
                     } else {
                         alert('다시 시도해주세요');
                     }

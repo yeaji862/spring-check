@@ -8,7 +8,7 @@ import spring.check.user.dto.Members;
 public interface UserMapper {
 
 
-    @Insert("INSERT INTO members VALUES (DEFAULT, #{userPass},'basic', NOW(), #{userMail}, 'default')")
+    @Insert("INSERT INTO members VALUES (DEFAULT, #{userPass}, null , NOW(), #{userMail}, 'default')")
     int signUp(Members members);
 
     @Select("SELECT * FROM members WHERE \"userMail\" = #{userMail} and division = 'default'")

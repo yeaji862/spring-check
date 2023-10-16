@@ -8,8 +8,8 @@ function today(){
     return year + '.' + month + '.' + day;
 }
 
-function yesterday(){
-    var today = new Date();
+function yesterday(date){
+    var today = new Date(date);
     var currentDate = new Date(today.setDate(today.getDate() - 1));
 
     var year = currentDate.getFullYear();
@@ -169,25 +169,25 @@ function habitModify(seq){
 function beforeDate(dateString){
     var date = subMonth(dateString);
 
-    window.location.href="/check?date=" + date;
+    window.location.href="/check/view?date=" + date;
 }
 
 function afterDate(dateString){
     var date = addMonth(dateString);
 
-    window.location.href="/check?date=" + date;
+    window.location.href="/check/view?date=" + date;
 }
 
 function mobileBeforeDate(dateString){
     var date = subMonth(dateString);
 
-    window.location.href="/check/infoMobile/?date=" + date;
+    window.location.href="/check/view/infoMobile/?date=" + date;
 }
 
 function mobileAfterDate(dateString){
     var date = addMonth(dateString);
 
-    window.location.href="/check/infoMobile/?date=" + date;
+    window.location.href="/check/view/infoMobile/?date=" + date;
 }
 
 function subMonth(dateString){

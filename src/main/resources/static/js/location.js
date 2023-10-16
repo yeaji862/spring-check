@@ -20,12 +20,12 @@ function findPass(){
 
 function refresh(){
     var currentDate = today();
-    window.location.href="/check/refresh?date=" + currentDate;
+    window.location.href="/check/view/refresh?date=" + currentDate;
 }
 
 function todayLink(){
-    var currentDate = yesterday();
-    window.location.href="/check/?date=" + currentDate;
+    var currentDate = today();
+    window.location.href="/check/view?date=" + currentDate;
 }
 
 function planLink(date){
@@ -45,37 +45,35 @@ function planLink(date){
         var currentDate = year + "." + month + "." + day;
       }
     }
-    window.location.href="/check?date=" + currentDate;
+    window.location.href="/check/view?date=" + currentDate;
 }
 
-function habitLink(){
-    var currentDate = today();
-    window.location.href="/check/habit?date=" + currentDate;
+function habitLink(date){
+    window.location.href="/check/view/habit?date=" + date;
 }
 
-function historyLink(){
-    var currentDate = yesterday();
-    window.location.href="/check/history?date=" + currentDate;
+function historyLink(date){
+    var currentDate = yesterday(date);
+    window.location.href="/check/view/history?date=" + currentDate;
 }
 
-function infoMobile(){
-    var currentDate = yesterday();
-    window.location.href="/check/infoMobile?date=" + currentDate;
+function infoMobile(date){
+    window.location.href="/check/view/infoMobile?date=" + date;
 }
 
 function historyHabitOn(seq, date){
-    window.location.href="/check/habit/"+seq+"?division=on&&date=" + date;
+    window.location.href="/check/view/habit/"+seq+"?division=on&&date=" + date;
 }
 
 function historyHabitOff(seq, date){
-    window.location.href="/check/habit/"+seq+"?division=off&&date=" + date;
+    window.location.href="/check/view/habit/"+seq+"?division=off&&date=" + date;
 }
 
 function historyDailyOn(seq, date){
-    window.location.href="/check/daily/"+seq+"?division=on&&date=" + date;
+    window.location.href="/check/view/daily/"+seq+"?division=on&&date=" + date;
 }
 
 function historyDailyOff(seq, date){
-    window.location.href="/check/daily/"+seq+"?division=off&&date=" + date;
+    window.location.href="/check/view/daily/"+seq+"?division=off&&date=" + date;
 }
 

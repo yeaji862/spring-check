@@ -28,7 +28,7 @@ public class EditPassLinkController {
             model.addAttribute("userNum", id.getUserNum());
             return "editPass";
         }else {
-            return "redirect:http://localhost:8080/?status=link";
+            return "redirect:/?status=link";
         }
     }
 }

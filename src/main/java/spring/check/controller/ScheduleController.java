@@ -4,80 +4,46 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import spring.check.plan.dto.FeedBack;
-import spring.check.plan.dto.InfoSchedule;
-import spring.check.plan.service.FeedBackServiceImpl;
+import spring.check.cache.ScheduleCache;
 import spring.check.plan.service.ReadScheduleServiceImpl;
 import spring.check.plan.service.UpdatePlanServiceImpl;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/check")
+@RequestMapping("/check/view")
 public class ScheduleController {
 
-    private final ReadScheduleServiceImpl readScheduleService;
     private final UpdatePlanServiceImpl updatePlanService;
-    private final FeedBackServiceImpl feedBackService;
+    private final ReadScheduleServiceImpl readScheduleService;
+    private final ScheduleCache scheduleCache;
 
     @GetMapping
-    String main(HttpSession session, Model model, @RequestParam String date){
-        int userNum = (int) session.getAttribute("userNum");
-        FeedBack feedBack = (feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5, 7)), Integer.valueOf(date.substring(0, 4))));
-        InfoSchedule infoSchedule = readScheduleService.infoSchedule(userNum, date);
-        model.addAttribute("infoSchedule" , infoSchedule);
-        model.addAttribute("content", readScheduleService.content(userNum, date));
-        model.addAttribute("feedback" , feedBack);
-        model.addAttribute("date", date);
+    String main(Model model){
         model.addAttribute("planLink", "true");
         return "check/main";
     }
 
     @GetMapping("/habit")
-    String habitMain(HttpSession session, Model model, @RequestParam String date){
-        int userNum = (int) session.getAttribute("userNum");
-        InfoSchedule infoSchedule = readScheduleService.infoSchedule(userNum, date);
-        model.addAttribute("infoSchedule" , infoSchedule);
-        model.addAttribute("content", readScheduleService.content(userNum, date));
-        model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
-        model.addAttribute("date", date);
+    String habitMain(Model model){
         model.addAttribute("habitLink", "true");
         return "check/habit_main";
     }
 
     @GetMapping("/history")
-    String yesterdaySchedule(HttpSession session,Model model, @RequestParam String date){
-        int userNum = (int) session.getAttribute("userNum");
-        InfoSchedule infoSchedule = readScheduleService.infoSchedule(userNum, date);
-        model.addAttribute("infoSchedule" , infoSchedule);
-        model.addAttribute("content", readScheduleService.content(userNum, date));
-        model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
-        model.addAttribute("date", date);
+    String yesterdaySchedule(Model model){
         model.addAttribute("historyLink", "true");
         return "check/plan_history";
     }
 
     @GetMapping("/refresh")
-    String refresh(HttpSession session, Model model, @RequestParam String date){
-        int userNum = (int) session.getAttribute("userNum");
-        InfoSchedule infoSchedule = readScheduleService.infoScheduleCacheDelete(userNum, date);
-        model.addAttribute("infoSchedule" , infoSchedule);
-        model.addAttribute("content", readScheduleService.content(userNum, date));
-        model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
-        model.addAttribute("date", date);
+    String refresh(Model model, @RequestParam String date){
+        scheduleCache.infoScheduleCacheDelete(date);
         model.addAttribute("planLink", "true");
         return "check/main";
     }
 
     @GetMapping("/infoMobile")
-    String infoMobile(HttpSession session, Model model, @RequestParam String date){
-        int userNum = (int) session.getAttribute("userNum");
-        InfoSchedule infoSchedule = readScheduleService.infoScheduleCacheDelete(userNum, date);
-        model.addAttribute("infoSchedule" , infoSchedule);
-        model.addAttribute("content", readScheduleService.content(userNum, date));
-        model.addAttribute("feedback" , feedBackService.feedBackContent(userNum, Integer.valueOf(date.substring(5,7)), Integer.valueOf(date.substring(0,4))));
-        model.addAttribute("date", date);
+    String infoMobile(Model model){
         model.addAttribute("mobile", "mobile");
         return "check/info-mobile";
     }
@@ -85,17 +51,20 @@ public class ScheduleController {
     @GetMapping("/daily/{seq}")
     String achievedDaily(@RequestParam String division,
                          @PathVariable int seq,
-                         @RequestParam String date){
+                         Model model){
             updatePlanService.achievedDaily(division, seq);
-            return "redirect:/check/history?date="+date;
+            model.addAttribute("historyLink", "true");
+            return "check/plan_history";
     }
 
     @GetMapping("/habit/{seq}")
     String achievedHabit(@RequestParam String division,
-                        @PathVariable int seq,
-                        @RequestParam String date){
+                         @PathVariable int seq,
+                         @RequestParam String date,
+                         Model model){
         updatePlanService.achievedHabit(division, seq, date);
-        return "redirect:/check/history?date="+date;
+        model.addAttribute("historyLink", "true");
+        return "check/plan_history";
     }
 }
 

@@ -6,12 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import spring.check.cache.ScheduleCache;
 import spring.check.user.dto.Members;
 import spring.check.user.service.UserServiceImpl;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 
 @Slf4j
 @Controller
@@ -20,6 +24,7 @@ import java.time.format.DateTimeFormatter;
 public class UserController {
 
     private  final UserServiceImpl userService;
+    private final ScheduleCache scheduleCache;
 
     @PostMapping("/signUp")
     public String userSignUp(@ModelAttribute Members members, Model model, HttpSession session){
@@ -28,7 +33,10 @@ public class UserController {
             Members signInMember = userService.signIn(members);
             session.setAttribute("userMail" , signInMember.getUserMail());
             session.setAttribute("userNum" , signInMember.getUserNum());
-            return "redirect:http://localhost:8080/check?date=" +
+            if(signInMember.getUserImg() != null){
+                session.setAttribute("userImg", Base64.getEncoder().encodeToString(signInMember.getUserImg()));
+            }
+            return "redirect:/check/view?date=" +
                     LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         }else{
             return "redirect:?status=join_fail";
@@ -48,7 +56,10 @@ public class UserController {
         if(signInMember != null){
             session.setAttribute("userMail" , signInMember.getUserMail());
             session.setAttribute("userNum" , signInMember.getUserNum());
-            return "redirect:http://localhost:8080/check?date=" +
+            if(signInMember.getUserImg() != null){
+                session.setAttribute("userImg", Base64.getEncoder().encodeToString(signInMember.getUserImg()));
+            }
+            return "redirect:/check/view?date=" +
                     LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         }else {
             return "redirect:?status=fail";
@@ -56,7 +67,7 @@ public class UserController {
     }
 
     @GetMapping
-    public String backPage(HttpSession session){ // 회원가입 후 뒤로가기 방지
+    public String backPage(HttpSession session){ // 뒤로가기 방지
         return (session.getAttribute("userMail") != null && session.getAttribute("userNum") != null)? "check/main" : "index";
     }
 
@@ -67,13 +78,14 @@ public class UserController {
 
     @PostMapping("/findPass")
     public String editPass(@ModelAttribute Members members){
-        return (userService.editPass(members) == 1) ? "redirect:http://localhost:8080/?status=pass" : "index";
+        return (userService.editPass(members) == 1) ? "redirect:/?status=pass" : "index";
     }
 
     @GetMapping("/logout")
-    public String userLogout(HttpSession session){
-        session.removeAttribute("userMail");
-        session.removeAttribute("userNum");
+    public String userLogout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.invalidate();
+        scheduleCache.infoScheduleCacheAllDelete();
         return "index";
     }
 
@@ -82,7 +94,7 @@ public class UserController {
     public String userImgEdit(@RequestParam MultipartFile resizedImage, HttpSession session) throws IOException {
         int userNum = (int) session.getAttribute("userNum");
         if(userService.editImg(userNum, resizedImage) > 0 ) {
-            session.setAttribute("userImg", resizedImage.getBytes());
+            session.setAttribute("userImg", Base64.getEncoder().encodeToString(resizedImage.getBytes()));
             return "ok";
         }else return "";
     }

@@ -16,7 +16,7 @@
         <div class="col-md-6">
             <div class="card_div" style="height: 600px;">
                 <div class="main_text_div">
-                    <h1 class="main_text">Check</h1>
+                    <h1 class="main_text" onclick="location.href='/'">Check</h1>
                     <h3 class="sub_text">더 나은 미래를 위한 첫걸음,</h3>
                 </div>
                 <div class="login_form">
@@ -38,13 +38,7 @@
     <div class="col-md-3"></div>
 </div>
 </div>
-<script>
-       window.onpageshow = function(event) {
-        if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-            location.href="/user";
-            }
-        }
-</script>
+<script type="text/javascript" src="/js/backPage.js" ></script>
 <script type="text/javascript" src="/js/format_email.js" ></script>
 <script type="text/javascript" src="/js/format_pass.js" ></script>
 <script type="text/javascript" src="/js/ajax.js" ></script>

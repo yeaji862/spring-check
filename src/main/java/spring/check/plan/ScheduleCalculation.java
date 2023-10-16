@@ -47,8 +47,8 @@ public class ScheduleCalculation {
         return calendar;
     }
 
-    public int[] achievedCount(List<Status> status, int[] count){
-        log.info("ScheduleCalculation.achievedCount()");
+    public int[] dailyAchievedCount(List<Status> status, int[] count){
+        log.info("ScheduleCalculation.dailyAchievedCount()");
         if(status.size() != 0){
             for(int i=0; i<status.size(); i++){
                 count[0] += status.get(i).getTotalCount(); // 토탈 카운트
@@ -58,13 +58,24 @@ public class ScheduleCalculation {
         return count;
     }
 
-    public int achievedPercent(int[] dail, int[] habit) {
+    public int habitAchievedCount(List<Status> status){
+        log.info("ScheduleCalculation.habitAchievedCount()");
+        int count = 0;
+        if(status.size() != 0){
+            for(int i=0; i<status.size(); i++){
+                if(status.get(i).getAchievedCount() == status.get(i).getTotalCount()) count += 1;
+            }
+        }
+        return count;
+    }
+
+    public int achievedPercent(int[] daily, int habit, int actualMaximum) {
         log.info("ScheduleCalculation.achievedPercent()");
         int percent = 0;
         try{
-            dail[0] = (dail[0] == 0 && dail[1] == 0) ? 0 : dail[0]/dail[1]*50;
-            habit[0] = (habit[0] == 0 && habit[1] == 0) ? 0 : habit[0]/habit[1]*50;
-            percent = dail[0] + habit[0]/habit[1];
+            double habitAch = (habit == 0 || actualMaximum == 0) ? 0 : ((double) habit / (double) actualMaximum) * 100;
+            double dailyAch = (daily[0] == 0 || daily[1] == 0) ? 0 : ((double) daily[1] / (double) daily[0])* 100;
+            percent = (int) (habitAch + dailyAch) / 2;
         }catch (ArithmeticException e){
             log.error(e.getMessage());
         }
