@@ -1,0 +1,18 @@
+    .errorImg{
+        width: 60%;
+    }
+    .errorDiv{
+        text-align: center;
+        margin-top: 7%;
+    }
+    .errorH4{
+        font-weight: 300;
+    }
+    .errorA{
+        cursor: pointer;
+        text-decoration: underline;
+        color: #03A9F4;
+    }
+    .errorA:hover{
+                color: #0081bc;
+        }

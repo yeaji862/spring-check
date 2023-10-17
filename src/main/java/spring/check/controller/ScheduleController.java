@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.check.cache.ScheduleCache;
-import spring.check.plan.service.ReadScheduleServiceImpl;
 import spring.check.plan.service.UpdatePlanServiceImpl;
 
 @Controller
@@ -14,7 +13,6 @@ import spring.check.plan.service.UpdatePlanServiceImpl;
 public class ScheduleController {
 
     private final UpdatePlanServiceImpl updatePlanService;
-    private final ReadScheduleServiceImpl readScheduleService;
     private final ScheduleCache scheduleCache;
 
     @GetMapping
@@ -51,10 +49,11 @@ public class ScheduleController {
     @GetMapping("/daily/{seq}")
     String achievedDaily(@RequestParam String division,
                          @PathVariable int seq,
+                         @RequestParam String date,
                          Model model){
             updatePlanService.achievedDaily(division, seq);
             model.addAttribute("historyLink", "true");
-            return "check/plan_history";
+        return "redirect:/check/view/history";
     }
 
     @GetMapping("/habit/{seq}")
@@ -64,7 +63,7 @@ public class ScheduleController {
                          Model model){
         updatePlanService.achievedHabit(division, seq, date);
         model.addAttribute("historyLink", "true");
-        return "check/plan_history";
+        return "redirect:/check/view/history";
     }
 }
 

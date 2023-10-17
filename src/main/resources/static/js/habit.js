@@ -5,6 +5,15 @@ document.querySelector(".habitInput").addEventListener("keypress", function(even
   if (event.key === "Enter") {
     event.preventDefault();
     var content = document.querySelector(".habitInput").value;
+        if(content === ''){
+                const input = document.querySelector(".habitInput");
+                input.classList.add("vibrating");
+
+                setTimeout(() => {
+                    input.classList.remove("vibrating");
+                }, 300);
+                return;
+        }
     habitUpload(content,date, function (result) {
         var seq = result;
         if (seq > 0) {

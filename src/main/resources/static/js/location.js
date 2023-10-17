@@ -18,9 +18,8 @@ function findPass(){
     window.location.href="/user/findPass";
 }
 
-function refresh(){
-    var currentDate = today();
-    window.location.href="/check/view/refresh?date=" + currentDate;
+function refresh(date){
+    window.location.href="/check/view/refresh?date=" + date;
 }
 
 function todayLink(){

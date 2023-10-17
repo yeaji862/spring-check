@@ -5,6 +5,15 @@ document.querySelector(".dailyInput").addEventListener("keypress", function(even
   if (event.key === "Enter") {
     event.preventDefault();
     var content = document.querySelector(".dailyInput").value;
+    if(content === ''){
+            const input = document.querySelector(".dailyInput");
+            input.classList.add("vibrating");
+
+            setTimeout(() => {
+                input.classList.remove("vibrating");
+            }, 300);
+            return;
+    }
     dailyUpload(content,date, function (result) {
         var seq = result;
         if (seq > 0) {

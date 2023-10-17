@@ -48,14 +48,14 @@
 </div>
 
 <div class="info-div">
-  <img th:src="@{/img/iconmonstr-refresh-lined-240.png}" class="refresh-img" onclick="refresh()">
+  <img th:src="@{/img/iconmonstr-refresh-lined-240.png}" class="refresh-img" th:onclick="refresh( [[${date}]] )">
   <p class="num-p">지금까지 총 <span style="font-weight: 400;" th:text="${infoSchedule.allAchievedCount + '개'}"></span>의 일정을 달성했습니다!</p><br>
   <span>이번달 평균 달성치</span><br>
   <div class="h2-with-text">
     <h2 style="padding-top: 2%;" th:text="${infoSchedule.achievedPercent + '%'}"></h2>
     <div class="text">
-      <small style="color: #dc3545;" th:text="${'일정 : ' + infoSchedule.dailCount + ' 개 / ' + + infoSchedule.dailAchievedCount + ' 개'}"></small><br>
-      <small style="color: #28a745;" th:text="${'한 달 습관 : ' + infoSchedule.habitCount + ' day / ' + + infoSchedule.habitAchievedCount + ' day'}"></small>
+      <small style="color: #28a745;" th:text="${'일정 : ' + infoSchedule.dailCount + ' 개 / ' + + infoSchedule.dailAchievedCount + ' 개'}"></small><br>
+      <small style="color: #dc3545;" th:text="${'한 달 습관 : ' + infoSchedule.habitCount + ' day / ' + + infoSchedule.habitAchievedCount + ' day'}"></small>
     </div>
   </div>
 </div>

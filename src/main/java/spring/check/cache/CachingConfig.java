@@ -17,9 +17,7 @@ public class CachingConfig {
     public CacheManager cacheManager(){
         SimpleCacheManager cacheManager = new SimpleCacheManager();
         cacheManager.setCaches(Arrays.asList(
-                new ConcurrentMapCache("infoSchedule"),
-                new ConcurrentMapCache("dailyList"),
-                new ConcurrentMapCache("habitList")));
+                new ConcurrentMapCache("infoSchedule")));
         return cacheManager;
     }
 }

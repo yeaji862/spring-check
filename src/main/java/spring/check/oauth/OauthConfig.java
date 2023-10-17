@@ -44,7 +44,7 @@ public class OauthConfig {
             case "kakao" :
                 KakaoUserInfoResponse kakaoUserInfoResponse = requestHeadersSpec.retrieve().bodyToFlux(KakaoUserInfoResponse.class).blockFirst();
                 userMail =  (kakaoUserInfoResponse.getKakao_account().getEmail() != null) ?
-                kakaoUserInfoResponse.getKakao_account().getEmail() : String.valueOf(kakaoUserInfoResponse.getId()); break;
+                kakaoUserInfoResponse.getKakao_account().getEmail() : String.valueOf(kakaoUserInfoResponse.getId()); break; // 카카오는 이메일 값이 필수 요청 값이 아니기 때문에 이메일 정보가 없을 때에는 고유 id 번호 값으로 저장
             case "naver" :
                 userMail =  requestHeadersSpec.retrieve().bodyToFlux(NaverUserInfoResponse.class).blockFirst().getResponse().getEmail(); break;
         }

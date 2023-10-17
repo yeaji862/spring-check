@@ -1,3 +1,13 @@
+function checkParameter() {
+        const urlParams = new URL(location.href).searchParams;
+        const paramValue = urlParams.get('dateEx');
+        if (paramValue === "0") {
+            alert('유효하지 않은 날짜 형식입니다.')
+        }
+}
+
+     window.onload = checkParameter;
+
 function today(){
     var currentDate = new Date();
 
