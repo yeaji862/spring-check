@@ -6,7 +6,7 @@ function signUpSubmit(){
     var email = document.getElementById('email').value;
     var passWord = document.getElementById('passWord').value;
     var checkPassWord = document.getElementById('checkPassWord').value;
-
+    matchPass();
     if(email === '' || passWord === '' || checkPassWord === ''){
         alert('빈칸을 채워주세요');
         event.preventDefault();
@@ -20,7 +20,10 @@ function linkSand(){
     var success = document.querySelector('.success');
     var spinner = document.querySelector('.spinner');
     var findPass_button = document.querySelector('.findPass_button');
-
+    if(email == ''){
+        alert('이메일을 입력해주세요.');
+        return;
+    }
     if(noneMail === 'none'){
           spinner.style.display = 'block';
           findPass_button.style.display = 'none';

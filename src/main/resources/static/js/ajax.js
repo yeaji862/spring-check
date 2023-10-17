@@ -70,7 +70,6 @@ function feedbackInsertAjax(textareaValue){
 }
 
 function habitOnAjax(seq, date){
-alert(seq);
   $.ajax({
     url: "/check/rest/habit",
     method: "POST",
