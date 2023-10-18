@@ -19,9 +19,9 @@ function today(){
 }
 
 function yesterday(date){
-    var today = new Date(date);
+    var formattedDate = date.replace(/\./g, '/');
+    var today = new Date(formattedDate);
     var currentDate = new Date(today.setDate(today.getDate() - 1));
-
     var year = currentDate.getFullYear();
     var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
     var day = currentDate.getDate().toString().padStart(2, '0');
@@ -201,8 +201,8 @@ function mobileAfterDate(dateString){
 }
 
 function subMonth(dateString){
-  var date = new Date(dateString);
-
+  var formattedDate = dateString.replace(/\./g, '/');
+  var date = new Date(formattedDate+'/01');
   date.setMonth(date.getMonth() - 1);
 
   var year = date.getFullYear();
@@ -212,7 +212,8 @@ function subMonth(dateString){
 }
 
 function addMonth(dateString){
-  var date = new Date(dateString);
+ var formattedDate = dateString.replace(/\./g, '/');
+  var date = new Date(formattedDate+'/01');
 
   date.setMonth(date.getMonth() + 1);
 
