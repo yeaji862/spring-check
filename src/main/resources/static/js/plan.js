@@ -68,22 +68,23 @@ function scheduleChangeOn(seq, schedule){
     var checkOnDiv = document.querySelector('.'+ schedule+'CheckOn');
     var checkbox = document.getElementById(seq + 'checkbox-' + schedule);
     checkbox.checked = true;
-    checkOnDiv.classList.contains("history-date");
     checkOnDiv.appendChild(animatedText);
     animatedText.querySelector('p').classList.add('checkOn');
     document.querySelector('.'+schedule+'Div'+seq).setAttribute('onclick', schedule + 'Off('+seq+')');
+    checkOnDiv.classList.contains("history-date");
 }
 
 function scheduleChangeOff(seq, schedule){
+alert('.'+ schedule+'Position' + seq);
     var date = document.querySelector('.todayDate').value;
     var animatedText = document.getElementById(schedule + seq);
     var checkOffDiv = document.querySelector('.'+ schedule+'Position' + seq);
     var checkbox = document.getElementById(seq + 'checkbox-' + schedule);
     checkbox.checked = false;
-    checkOffDiv.classList.contains("history-date");
     checkOffDiv.appendChild(animatedText);
     animatedText.querySelector('p').classList.remove('checkOn');
     document.querySelector('.'+schedule+'Div'+seq).setAttribute('onclick', schedule + 'On('+seq+')');
+    checkOffDiv.classList.contains("history-date");
 }
 
 function dailyDelete(seq){

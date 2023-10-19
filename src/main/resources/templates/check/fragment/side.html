@@ -6,8 +6,10 @@
 <div class="web-drop">
     <div class="dropdown">
         <img th:if="${session.userImg} != null" th:src="'data:image/jpeg;base64,' + ${session.userImg}" class="barProfile-img" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img th:if="${session.userImg} == null" th:src="@{/img/profile.png}" class="barProfile-img" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img th:if="${session.userImg} == null" th:src="@{/img/profile.png}" class="barProfile-img" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:alt="${session.userMail}">
         <ul class="dropdown-menu">
+            <li><p class="emailA" th:text="${session.userMail}"></p></li>
+            <hr style="margin: 4%;">
             <li><a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">이미지 변경</a></li>
             <li><a class="dropdown-item" href="/user/logout" style="color: #b5b5b5;">로그아웃</a></li>
         </ul>

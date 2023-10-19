@@ -17,7 +17,7 @@ public interface UserMapper {
     @Update("UPDATE members SET \"userImg\" = #{file} WHERE \"userNum\" = #{userNum}")
     int editImg(@Param("userNum") int userNum, @Param("file")byte[] file);
 
-    @Update("UPDATE members SET \"userPass\" = #{userPass} WHERE \"userNum\" = #{userNum}")
+    @Update("UPDATE members SET \"userPass\" = #{userPass} WHERE \"userNum\" = #{userNum} and division = 'default'")
     int editPass(Members members);
 
     @Select("SELECT count(*) FROM members WHERE \"userMail\" = #{userMail} and division = 'default'")
