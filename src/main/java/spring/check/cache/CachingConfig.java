@@ -21,7 +21,6 @@ public class CachingConfig {
 
         ConcurrentMapCache infoScheduleCache = new ConcurrentMapCache("infoSchedule", Caffeine.newBuilder()
                 .expireAfterWrite(24, TimeUnit.HOURS) // 24시간으로 설정
-                .maximumSize(100) // 최대 항목 수 설정
                 .build().asMap(), false);
 
         cacheManager.setCaches(Arrays.asList(infoScheduleCache));
