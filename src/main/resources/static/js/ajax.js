@@ -44,6 +44,8 @@ function feedbackUpdateAjax(createDate, textareaValue){
     success: function (data) {
       if (data < 0) {
               alert('다시 시도해주세요!');
+      }else{
+        alert('수정이 완료되었습니다!');
       }
     },
     error: function (request, status, error) {
@@ -61,7 +63,9 @@ function feedbackInsertAjax(textareaValue){
     success: function (data) {
       if (data < 0) {
         alert('다시 시도해주세요!');
-      }
+      }else{
+               alert('수정이 완료되었습니다!');
+             }
     },
     error: function (request, status, error) {
       alert('다시 시도해주세요!');
