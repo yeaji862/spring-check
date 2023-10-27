@@ -36,7 +36,7 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.8.9'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.boot:spring-boot-starter-cache:2.7.5'
-
+	implementation group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '2.9.3'
 }
 
 tasks.named('test') {
